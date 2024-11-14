@@ -2,7 +2,7 @@ package com.example.simulation.Entitys;
 
 import com.example.simulation.Coordinates;
 
-abstract class Entity { //сущность (все существа и объекты существующие в симуляции)
+public abstract class Entity { //сущность (все существа и объекты существующие в симуляции)
     Coordinates coordinates;
 
     public Entity(Coordinates coordinates) {
