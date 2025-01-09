@@ -35,9 +35,9 @@ public class Map { //карта
         //𓃬 𝈳 🐆 🐅 🐯 🦁- хищник - 3
         //🦅 - орёл
 
-        createEntity(new Rock(generateRandomCoordinates(rows, columns)), 2);
-        createEntity(new Tree(generateRandomCoordinates(rows, columns)), 2);
-        createEntity(new Grass(generateRandomCoordinates(rows, columns)), 7);
+        createEntity(new Rock(generateRandomCoordinates(rows, columns)), 7);
+        createEntity(new Tree(generateRandomCoordinates(rows, columns)), 12);
+        createEntity(new Grass(generateRandomCoordinates(rows, columns)), 17);
         createEntity(new Herbivore(generateRandomCoordinates(rows, columns)), 7);
         createEntity(new Predator(generateRandomCoordinates(rows, columns)), 3);
         //createEntity(Entity entity, int count, HashMap<Coordinates,Entity> entities);
