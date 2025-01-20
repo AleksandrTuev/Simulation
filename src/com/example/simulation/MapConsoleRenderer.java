@@ -14,7 +14,8 @@ public class MapConsoleRenderer {
 
                 if (!(map.getEntities().containsKey(coordinates))){
 //                    line += "☐";
-                    line += "..";
+                    //line += "..";
+                    line += "🏿";
 
                 } else {
                     Entity entity = map.getEntities().get(coordinates);
