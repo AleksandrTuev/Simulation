@@ -5,4 +5,5 @@ public class Simulation { //general class
     //Count
     //Рендерер поля (отрисовка)
     //com.example.simulation.Actions - список действий, исполняемых перед стартом симуляции или на каждом ходу
+
 }

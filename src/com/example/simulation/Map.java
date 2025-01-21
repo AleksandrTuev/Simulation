@@ -27,6 +27,25 @@ public class Map { //карта
         return entities;
     }
 
+    public Entity getEntity(Coordinates coordinates){
+        return entities.get(coordinates);
+    }
+
+    public void makeMove(Coordinates from, Coordinates to) {
+        Entity entity = getEntity(from);
+
+        removeEntity(from);
+        setEntity(to, entity);
+    }
+
+    public void removeEntity(Coordinates from){
+        entities.remove(from);
+    }
+
+    public void setEntity(Coordinates to, Entity entity){
+        entities.put(to, entity);
+    }
+
     public void setupEntitiesPositions() { //настройка позиций сущностей
         //⛰ 𝈵 🌵 🏛 ⛰️🪨 - гора/камень - 2
         //🌳 - дерево - 2

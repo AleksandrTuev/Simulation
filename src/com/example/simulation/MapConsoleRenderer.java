@@ -18,7 +18,7 @@ public class MapConsoleRenderer {
                     line += "🏿";
 
                 } else {
-                    Entity entity = map.getEntities().get(coordinates);
+                    Entity entity = map.getEntity(coordinates);
                     //⛰ 𝈵 🌵 🏛 ⛰️🪨 - гора/камень - 2
                     //🌳 - дерево - 2
                     //❀✿𓆸 𝈙 🏵 🍀 - трава - 7

@@ -25,6 +25,8 @@ public class Coordinates {
         this.column = column;
     }
 
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
