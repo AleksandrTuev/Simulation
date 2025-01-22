@@ -14,26 +14,26 @@ public class MapConsoleRenderer {
     Coordinates coordinates;
 
         for (int i = 1; i < map.getRows() + 1; i++) {
-            String line = "";
+            StringBuilder line = new StringBuilder();
             for (int j = 1; j < map.getColumns() + 1; j++) {
                 coordinates = new Coordinates(i, j);
 
                 if (!(map.getEntities().containsKey(coordinates))){
-                    line += UNICODE_EMPTY_CELL;
+                    line.append(UNICODE_EMPTY_CELL);
 
                 } else {
                     Entity entity = map.getEntity(coordinates);
 
                     if (entity instanceof Rock){
-                        line += UNICODE_ROCK;
+                        line.append(UNICODE_ROCK);
                     } else if (entity instanceof Tree) {
-                        line += UNICODE_TREE;
+                        line.append(UNICODE_TREE);
                     } else if (entity instanceof Grass) {
-                        line += UNICODE_GRASS;
+                        line.append(UNICODE_GRASS);
                     } else if (entity instanceof Herbivore) {
-                        line += UNICODE_HERBIVORE;
+                        line.append(UNICODE_HERBIVORE);
                     } else if (entity instanceof Predator) {
-                        line += UNICODE_PREDATOR;
+                        line.append(UNICODE_PREDATOR);
                     }
                 }
             }
