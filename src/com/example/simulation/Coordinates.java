@@ -1,5 +1,7 @@
 package com.example.simulation;
 
+import com.example.simulation.Entitys.CoordinatesShift;
+
 public class Coordinates {
     private int row;
     private int column;
@@ -25,7 +27,19 @@ public class Coordinates {
         this.column = column;
     }
 
+    public Coordinates shift(CoordinatesShift coordinatesShift) {
+        return new Coordinates(row + coordinatesShift.rowShift, column + coordinatesShift.columnShift);
+    }
 
+    public boolean canShift(CoordinatesShift coordinatesShift, Map map) {
+        int i = row + coordinatesShift.rowShift;
+        int j = column + coordinatesShift.columnShift;
+
+        if ((i < 1) || (i > map.getRows())) return false;
+        if ((j < 1) || (j > map.getColumns())) return false;
+
+        return true;
+    }
 
     @Override
     public boolean equals(Object o) {

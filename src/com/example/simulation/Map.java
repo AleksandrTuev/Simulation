@@ -47,13 +47,6 @@ public class Map { //карта
     }
 
     public void setupEntitiesPositions() { //настройка позиций сущностей
-        //⛰ 𝈵 🌵 🏛 ⛰️🪨 - гора/камень - 2
-        //🌳 - дерево - 2
-        //❀✿𓆸 𝈙 🏵 🍀 - трава - 7
-        //𓃲 𝈔 🐇 🐐 - травоядные - 7
-        //𓃬 𝈳 🐆 🐅 🐯 🦁- хищник - 3
-        //🦅 - орёл
-
         createEntity(new Rock(generateRandomCoordinates(rows, columns)), 7);
         createEntity(new Tree(generateRandomCoordinates(rows, columns)), 12);
         createEntity(new Grass(generateRandomCoordinates(rows, columns)), 17);
