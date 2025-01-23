@@ -52,9 +52,6 @@ public class Map { //карта
         createEntity(new Grass(generateRandomCoordinates(rows, columns)), 17);
         createEntity(new Herbivore(generateRandomCoordinates(rows, columns)), 7);
         createEntity(new Predator(generateRandomCoordinates(rows, columns)), 3);
-        //createEntity(Entity entity, int count, HashMap<Coordinates,Entity> entities);
-        //
-        //setEntityOnMap();
     }
 
     private void createEntity(Entity entity, int count){

@@ -54,4 +54,14 @@ abstract class Creature extends Entity { //существо
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Creature{" +
+                "healthPoints=" + healthPoints +
+                ", searchRadius=" + searchRadius +
+                ", food=" + food +
+                ", coordinates=" + coordinates +
+                '}';
+    }
 }
