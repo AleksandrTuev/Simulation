@@ -17,6 +17,10 @@ public class Actions { //действия
         setupEntitiesPositions();
     }
 
+    public void turnActions() {
+
+    }
+
     private void setupEntitiesPositions() { //настройка позиций сущностей
         createEntity(new Rock(generateRandomCoordinates(map.getRows(), map.getColumns())), 7);
         createEntity(new Tree(generateRandomCoordinates(map.getRows(), map.getColumns())), 12);
@@ -45,10 +49,12 @@ public class Actions { //действия
                 coordinates = generateRandomCoordinates(map.getRows(), map.getColumns());
                 Herbivore herbivore = new Herbivore(coordinates);
                 map.getEntities().put(coordinates, herbivore);
+                map.setCreatures(herbivore);
             } else if (entity instanceof Predator) {
                 coordinates = generateRandomCoordinates(map.getRows(), map.getColumns());
                 Predator predator = new Predator(coordinates);
                 map.getEntities().put(coordinates, predator);
+                map.setCreatures(predator);
             }
         }
     }

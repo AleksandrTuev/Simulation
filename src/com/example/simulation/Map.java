@@ -2,13 +2,15 @@ package com.example.simulation;
 
 import com.example.simulation.Entitys.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
+import java.util.List;
 
 public class Map { //карта
     private final int rows;
     private final int columns;
     private final HashMap<Coordinates, Entity> entities = new HashMap<>();
+    private final List<Creature> creatures = new ArrayList<>();
 
     public Map(int rows, int columns) {
         this.rows = rows;
@@ -46,7 +48,15 @@ public class Map { //карта
         entities.put(to, entity);
     }
 
-//    public void setupEntitiesPositions() { //настройка позиций сущностей
+    public List<Creature> getCreatures() {
+        return creatures;
+    }
+
+    public void setCreatures(Creature creature) {
+        creatures.add(creature);
+    }
+
+    //    public void setupEntitiesPositions() { //настройка позиций сущностей
 //        createEntity(new Rock(generateRandomCoordinates(rows, columns)), 7);
 //        createEntity(new Tree(generateRandomCoordinates(rows, columns)), 12);
 //        createEntity(new Grass(generateRandomCoordinates(rows, columns)), 17);

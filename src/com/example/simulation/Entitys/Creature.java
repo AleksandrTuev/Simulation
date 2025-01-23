@@ -6,7 +6,7 @@ import com.example.simulation.Map;
 import java.util.HashSet;
 import java.util.Set;
 
-abstract class Creature extends Entity { //существо
+public abstract class Creature extends Entity { //существо
     //скорость (сколько клеток проходит за раз)
     protected int healthPoints; //очков здоровья
     protected final int searchRadius; //радиус поиска
