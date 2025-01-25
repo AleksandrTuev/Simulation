@@ -58,4 +58,12 @@ public class Coordinates {
         result = 31 * result + column;
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Coordinates{" +
+                "row=" + row +
+                ", column=" + column +
+                '}';
+    }
 }

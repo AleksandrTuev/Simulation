@@ -5,7 +5,7 @@ import com.example.simulation.Coordinates;
 import java.util.Set;
 
 public class Predator extends Creature { //хищник
-//    private final int searchRadius = 3;
+//    private final int numberOfSteps = 3;
 
     public Predator(Coordinates coordinates) {
         super(coordinates, 10, 3, Herbivore.class);

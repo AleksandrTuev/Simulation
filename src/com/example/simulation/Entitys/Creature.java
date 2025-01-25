@@ -9,20 +9,24 @@ import java.util.Set;
 public abstract class Creature extends Entity { //существо
     //скорость (сколько клеток проходит за раз)
     protected int healthPoints; //очков здоровья
-    protected final int searchRadius; //радиус поиска
+    protected final int numberOfSteps; //радиус поиска
     protected Class <? extends Entity> food;
-    public Creature(Coordinates coordinates, int healthPoints, int searchRadius, Class <? extends Entity> food) {
+    public Creature(Coordinates coordinates, int healthPoints, int numberOfSteps, Class <? extends Entity> food) {
         super(coordinates);
         this.healthPoints = healthPoints;
-        this.searchRadius = searchRadius;
+        this.numberOfSteps = numberOfSteps;
         this.food = food;
+    }
+
+    public Class<? extends Entity> getFood() {
+        return food;
     }
 
     protected Set<CoordinatesShift> getCreatureMoves (){
         Set<CoordinatesShift> result = new HashSet<>();
 
-        for (int i = -(searchRadius); i <= searchRadius; i++){
-            for (int j = -(searchRadius); j <= searchRadius; j++){
+        for (int i = -(numberOfSteps); i <= numberOfSteps; i++){
+            for (int j = -(numberOfSteps); j <= numberOfSteps; j++){
                 if ((i == 0) && (j == 0)) continue;
 
                 result.add(new CoordinatesShift(i, j));
@@ -59,7 +63,7 @@ public abstract class Creature extends Entity { //существо
     public String toString() {
         return "Creature{" +
                 "healthPoints=" + healthPoints +
-                ", searchRadius=" + searchRadius +
+                ", numberOfSteps=" + numberOfSteps +
                 ", food=" + food +
                 ", coordinates=" + coordinates +
                 '}';

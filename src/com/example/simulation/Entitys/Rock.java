@@ -7,4 +7,11 @@ public class Rock extends Entity { //камень
     public Rock(Coordinates coordinates) {
         super(coordinates);
     }
+
+    @Override
+    public String toString() {
+        return "Rock{" +
+                "coordinates=" + coordinates +
+                '}';
+    }
 }

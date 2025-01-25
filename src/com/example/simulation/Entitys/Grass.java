@@ -7,4 +7,11 @@ public class Grass extends Entity { //трава
     public Grass(Coordinates coordinates) {
         super(coordinates);
     }
+
+    @Override
+    public String toString() {
+        return "Grass{" +
+                "coordinates=" + coordinates +
+                '}';
+    }
 }

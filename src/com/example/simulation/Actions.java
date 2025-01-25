@@ -2,7 +2,7 @@ package com.example.simulation;
 
 import com.example.simulation.Entitys.*;
 
-import java.util.Random;
+import java.util.*;
 
 public class Actions { //действия
     private final Map map;
@@ -17,7 +17,8 @@ public class Actions { //действия
         setupEntitiesPositions();
     }
 
-    public void turnActions() {
+    public void turnActions() { //TODO
+
 
     }
 
