@@ -8,7 +8,7 @@ public class Predator extends Creature { //хищник
 //    private final int numberOfSteps = 3;
 
     public Predator(Coordinates coordinates) {
-        super(coordinates, 10, 3, Herbivore.class);
+        super(coordinates, 10, 3, 2, Herbivore.class);
     }
 
 //    @Override

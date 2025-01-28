@@ -10,7 +10,7 @@ public class Herbivore extends Creature { //травоядное животно�
 //    private final int numberOfSteps = 2;
 
     public Herbivore(Coordinates coordinates) {
-        super(coordinates, 10, 2, Tree.class);
+        super(coordinates, 10, 2, 1, Tree.class);
     }
 
     //тратят свой ход на движение к траве или на её поглощение

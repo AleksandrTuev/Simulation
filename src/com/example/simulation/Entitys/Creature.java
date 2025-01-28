@@ -9,7 +9,8 @@ import java.util.Set;
 public abstract class Creature extends Entity { //существо
     //скорость (сколько клеток проходит за раз)
     protected int healthPoints; //очков здоровья
-    protected final int numberOfSteps; //радиус поиска
+    protected final int numberOfSteps; //количество шагов/клеток можно делать за ход
+    protected final int attackDamage; //урон при атаке цели
     protected Class <? extends Entity> food;
     public Creature(Coordinates coordinates, int healthPoints, int numberOfSteps, Class <? extends Entity> food) {
         super(coordinates);
