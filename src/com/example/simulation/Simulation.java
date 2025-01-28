@@ -1,13 +1,18 @@
 package com.example.simulation;
 
 public class Simulation { //general class
+    private Map map;
     //com.example.simulation.Map
     //Count
     //Рендерер поля (отрисовка)
     //com.example.simulation.Actions - список действий, исполняемых перед стартом симуляции или на каждом ходу
 
+
+    public Simulation(int rows, int columns) {
+        map = new Map(rows,columns);
+    }
+
     public void gameLoop() {
-        Map map = new Map(10,20);
         Actions actions = new Actions(map);
         MapConsoleRenderer mapConsoleRenderer = new MapConsoleRenderer();
         int count = 1;
