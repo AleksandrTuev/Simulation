@@ -2,6 +2,7 @@ package com.example.simulation;
 
 public class Simulation { //general class
     private Map map;
+    private int count = 0;
     //com.example.simulation.Map
     //Count
     //Рендерер поля (отрисовка)
@@ -19,13 +20,16 @@ public class Simulation { //general class
 
         actions.initActions();
         mapConsoleRenderer.render(map);
+        System.out.println("Количество ходов с момента старта: " + count);
 
-        while (count <= 3) {
+        while (count <= 10) {
+            count++;
             actions.turnActions();
             System.out.println();
             mapConsoleRenderer.render(map);
+            System.out.println("Количество ходов с момента старта: " + count);
 
-            count++;
+//            count++;
         }
 
     }

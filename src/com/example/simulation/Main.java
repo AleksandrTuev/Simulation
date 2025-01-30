@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Simulation simulation = new Simulation(10, 20);
+        Simulation simulation = new Simulation(5, 5); //10 20
         simulation.gameLoop();
         int a = 123;
 
@@ -21,7 +21,7 @@ public class Main {
 //        map.getEntities().put(coordinates, predator);
 //        map.setCreatures(predator);
 //
-//        Coordinates coordinates1 = new Coordinates(10, 20);
+//        Coordinates coordinates1 = new Coordinates(6, 9);
 //        Herbivore herbivore = new Herbivore(coordinates1);
 //        map.getEntities().put(coordinates1, herbivore);
 //        map.setCreatures(herbivore);
@@ -33,10 +33,10 @@ public class Main {
 //        Coordinates coordinates3 = new Coordinates(6, 2);
 //        Tree tree1 = new Tree(coordinates3);
 //        map.getEntities().put(coordinates3, tree1);
-
+//
 //        MapConsoleRenderer mapConsoleRenderer = new MapConsoleRenderer();
 //        mapConsoleRenderer.render(map);
-//
+////
 //        LinkedHashSet<Coordinates> path = PathSearchAlgorithm.getPath(coordinates, predator.getFood(), map);
 //        Coordinates[] xxx = path.toArray(new Coordinates[0]);
 //        List<Coordinates> fff = Arrays.stream(xxx).toList().reversed();

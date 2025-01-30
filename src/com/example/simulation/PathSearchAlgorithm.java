@@ -27,7 +27,7 @@ public class PathSearchAlgorithm {
 
                     if (coordinates.canShift(coordinatesShift, map)) {
                         if (map.getEntities().containsKey(coordinates.shift(coordinatesShift))) {
-                            if (food.equals(map.getEntity(coordinates.shift(coordinatesShift)).getClass())) {
+                            if (food.equals(map.getEntity(coordinates.shift(coordinatesShift)).getClass())) { //TODO Exception in thread "main" java.lang.NullPointerException: Cannot invoke "Object.getClass()" because the return value of "com.example.simulation.Map.getEntity(com.example.simulation.Coordinates)" is null
                                 path.put(coordinates.shift(coordinatesShift), coordinates);
                                 Coordinates targetCoordinates = coordinates.shift(coordinatesShift);
                                 result.add(targetCoordinates);
@@ -38,6 +38,7 @@ public class PathSearchAlgorithm {
                                     result.add(targetCoordinates);
 
                                     if (targetCoordinates == from) {
+//                                        result.toArray());
                                         return result;
                                     }
                                 }
