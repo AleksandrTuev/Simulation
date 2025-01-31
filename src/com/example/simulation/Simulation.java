@@ -1,7 +1,7 @@
 package com.example.simulation;
 
 public class Simulation { //general class
-    private Map map;
+    private final Map map;
     private int count = 0;
     //com.example.simulation.Map
     //Count

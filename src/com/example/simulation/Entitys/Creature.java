@@ -4,10 +4,7 @@ import com.example.simulation.Coordinates;
 import com.example.simulation.Map;
 import com.example.simulation.PathSearchAlgorithm;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public abstract class Creature extends Entity { //существо
     //скорость (сколько клеток проходит за раз)
@@ -31,7 +28,9 @@ public abstract class Creature extends Entity { //существо
     public void makeMove(Map map) {
 //        //TODO
     //найти цель
+//        List<Coordinates> list = new ArrayList<>(PathSearchAlgorithm.getPath(getCoordinates(), food, map));
         List<Coordinates> pathList = new ArrayList<>(PathSearchAlgorithm.getPath(getCoordinates(), food, map));
+        Collections.reverse(pathList);
 
         if ((pathList.isEmpty()) || (pathList.size() - 2 == 0)) {
             //Если координат нет - сделать рандомный ход TODO

@@ -37,6 +37,7 @@ public class Map { //карта
         Entity entity = getEntity(from);
 
         removeEntity(from);
+        entity.setCoordinates(to);
         setEntity(to, entity);
     }
 
