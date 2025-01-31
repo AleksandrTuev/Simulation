@@ -44,8 +44,8 @@ public abstract class Creature extends Entity { //существо
         if (count >= numberOfSteps) {
             count = numberOfSteps;
         } else {
-            //numberOfSteps - count = кол-во шагов
-            count = numberOfSteps - count;
+            //count = кол-во шагов
+//
             //numberOfSteps - кол-во шагов = кол-во атак
             numberAttacks = numberOfSteps - count;
             //кол-во атаки равно количеству оставшихся ходов
