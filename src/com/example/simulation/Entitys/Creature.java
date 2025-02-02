@@ -39,7 +39,7 @@ public abstract class Creature extends Entity { //существо
         }
 
         if (pathList.size() == 2) {
-            makeAttack(pathList.get(0), pathList.get(1), numberOfSteps, map);
+            makeAttack(pathList.get(0), pathList.get(1), numberOfSteps, map); //TODO
             return;
         }
 
@@ -56,9 +56,9 @@ public abstract class Creature extends Entity { //существо
 //
             //numberOfSteps - кол-во шагов = кол-во атак
             coordinates = pathList.get(count);
-            map.makeMove(getCoordinates(), coordinates);
+            map.makeMove(pathList.get(0), coordinates);
             numberAttacks = numberOfSteps - count;
-            makeAttack(pathList.get(0), pathList.get(pathList.size() - 1), numberAttacks, map);
+            makeAttack(getCoordinates(), pathList.get(pathList.size() - 1), numberAttacks, map); //TODO
             //кол-во атаки равно количеству оставшихся ходов
         }
 
@@ -79,7 +79,7 @@ public abstract class Creature extends Entity { //существо
         Entity entity = map.getEntities().get(target);
 
         for (int i = 1; i <= numberAttacks; i++) {
-            if (entity.getHealthPoints() >= 0) {
+            if (entity.getHealthPoints() > 0) {
                 entity.setHealthPoints(entity.getHealthPoints() - attackDamage);
             } else {
                 map.removeEntity(target);
@@ -87,6 +87,7 @@ public abstract class Creature extends Entity { //существо
 //                    map.getCreatures().remove((Creature) entity); //TODO вылетает исключение. Изменнение коллекции во время итерации
 //                }
                 map.makeMove(start, target);
+                return;
             }
         }
     }
