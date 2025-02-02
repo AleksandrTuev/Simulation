@@ -30,8 +30,8 @@ public abstract class Creature extends Entity { //существо
         Collections.reverse(pathList);
 
         if (pathList.isEmpty()) {
-            //Если координат нет - сделать рандомный ход TODO
-            //если ходов больше 5, то -1 hp , и добавить ход
+            //Если координат нет, то -1 hp
+            setHealthPoints(getHealthPoints() - 1);
             return;
         }
 

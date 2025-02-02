@@ -22,7 +22,7 @@ public class Simulation { //general class
         mapConsoleRenderer.render(map);
         System.out.println("Количество ходов с момента старта: " + count);
 
-        while (map.getCreatures().size() > 1) { //TODO подумать об условии выхода из цикла
+        while (!(map.getCreatures().isEmpty())) {
             count++;
             actions.turnActions();
             System.out.println();

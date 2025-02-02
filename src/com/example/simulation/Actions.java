@@ -29,6 +29,9 @@ public class Actions { //действия
 
         for (Creature creature : list) {
             map.getCreatures().remove(creature);
+            if (map.getEntities().containsValue(creature)) {
+                map.removeEntity(creature.getCoordinates()); //удаляет последнее существо
+            }
         }
     }
 
