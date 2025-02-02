@@ -8,14 +8,14 @@ import java.util.*;
 
 public abstract class Creature extends Entity { //существо
     //скорость (сколько клеток проходит за раз)
-    protected int healthPoints; //очков здоровья
+//    protected int healthPoints; //очков здоровья
     protected final int numberOfSteps; //количество шагов/клеток можно делать за ход
     protected final int attackDamage; //урон при атаке цели
     protected int distanceTraveled; //пройденное расстояние
     protected Class <? extends Entity> food;
     public Creature(Coordinates coordinates, int healthPoints, int numberOfSteps, int attackDamage, Class <? extends Entity> food) {
-        super(coordinates);
-        this.healthPoints = healthPoints;
+        super(coordinates, healthPoints);
+//        this.healthPoints = healthPoints;
         this.numberOfSteps = numberOfSteps;
         this.attackDamage = attackDamage;
         this.food = food;
@@ -32,29 +32,40 @@ public abstract class Creature extends Entity { //существо
         List<Coordinates> pathList = new ArrayList<>(PathSearchAlgorithm.getPath(getCoordinates(), food, map));
         Collections.reverse(pathList);
 
-        if ((pathList.isEmpty()) || (pathList.size() - 2 == 0)) {
+        if (pathList.isEmpty()) {
             //Если координат нет - сделать рандомный ход TODO
             //если ходов больше 5, то -1 hp , и добавить ход
             return;
         }
 
+        if (pathList.size() == 2) {
+            makeAttack(pathList.get(0), pathList.get(1), numberOfSteps, map);
+            return;
+        }
+
         int count = pathList.size() - 2;
         int numberAttacks = 0;
+        Coordinates coordinates;
 
         if (count >= numberOfSteps) {
             count = numberOfSteps;
+            coordinates = pathList.get(count);
+            map.makeMove(getCoordinates(), coordinates);
         } else {
             //count = кол-во шагов
 //
             //numberOfSteps - кол-во шагов = кол-во атак
+            coordinates = pathList.get(count);
+            map.makeMove(getCoordinates(), coordinates);
             numberAttacks = numberOfSteps - count;
+            makeAttack(pathList.get(0), pathList.get(pathList.size() - 1), numberAttacks, map);
             //кол-во атаки равно количеству оставшихся ходов
         }
 
-        Coordinates coordinates = pathList.get(count);
 
-        map.makeMove(getCoordinates(), coordinates);
-
+        // TODO makeAttack(int number) - совершить атаку(количество раз)
+//        makeAttack(numberAttacks);
+        // TODO map.statusCreature() проверяет кол-во жизней у сущности, при необходимости удаляет её
 
         //если цели нет -1 жизнь каждый ход
     //если цель есть определить путь (сделать ход на возможное количество ходов)
@@ -62,6 +73,22 @@ public abstract class Creature extends Entity { //существо
     //у травоядных урон атаки 1 клетка - 1 hp
     //у хищника урон атаки 1 клетка - 2 hp
     //счётчик ходов, каждые 5 клеток уровень hp уменьшается, если происходит атака, то счётчик обнуляется
+    }
+
+    private void makeAttack(Coordinates start, Coordinates target, int numberAttacks, Map map) {
+        Entity entity = map.getEntities().get(target);
+
+        for (int i = 1; i <= numberAttacks; i++) {
+            if (entity.getHealthPoints() >= 0) {
+                entity.setHealthPoints(entity.getHealthPoints() - attackDamage);
+            } else {
+                map.removeEntity(target);
+//                if (entity instanceof Creature) {
+//                    map.getCreatures().remove((Creature) entity); //TODO вылетает исключение. Изменнение коллекции во время итерации
+//                }
+                map.makeMove(start, target);
+            }
+        }
     }
 
 //    private int getStepCount(int numberOfSteps, int number) {

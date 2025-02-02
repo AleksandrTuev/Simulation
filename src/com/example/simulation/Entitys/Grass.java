@@ -5,7 +5,7 @@ import com.example.simulation.Coordinates;
 public class Grass extends Entity { //трава
 
     public Grass(Coordinates coordinates) {
-        super(coordinates);
+        super(coordinates, 10);
     }
 
     @Override

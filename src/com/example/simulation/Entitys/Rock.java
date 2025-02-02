@@ -5,7 +5,7 @@ import com.example.simulation.Coordinates;
 public class Rock extends Entity { //камень
 
     public Rock(Coordinates coordinates) {
-        super(coordinates);
+        super(coordinates, 100);
     }
 
     @Override

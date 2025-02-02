@@ -10,7 +10,7 @@ public class Map { //карта
     private final int rows;
     private final int columns;
     private final HashMap<Coordinates, Entity> entities = new HashMap<>();
-    private final List<Creature> creatures = new ArrayList<>();
+    private List<Creature> creatures = new ArrayList<>();
 
     public Map(int rows, int columns) {
         this.rows = rows;
@@ -39,6 +39,10 @@ public class Map { //карта
         removeEntity(from);
         entity.setCoordinates(to);
         setEntity(to, entity);
+
+
+//        if (entity instanceof Creature) {
+//        }
     }
 
     public void removeEntity(Coordinates from){

@@ -4,9 +4,11 @@ import com.example.simulation.Coordinates;
 
 public abstract class Entity { //сущность (все существа и объекты существующие в симуляции)
     public Coordinates coordinates;
+    protected int healthPoints; //очков здоровья
 
-    public Entity(Coordinates coordinates) {
+    public Entity(Coordinates coordinates, int healthPoints) {
         this.coordinates = coordinates;
+        this.healthPoints = healthPoints;
     }
 
     public Coordinates getCoordinates() {
@@ -15,5 +17,13 @@ public abstract class Entity { //сущность (все существа и о
 
     public void setCoordinates(Coordinates coordinates) {
         this.coordinates = coordinates;
+    }
+
+    public int getHealthPoints() {
+        return healthPoints;
+    }
+
+    public void setHealthPoints(int healthPoints) {
+        this.healthPoints = healthPoints;
     }
 }
