@@ -18,18 +18,26 @@ public class Actions { //действия
     }
 
     public void turnActions() { //TODO
+        List<Creature> list = new ArrayList<>();
         for (Creature creature : map.getCreatures()) {
+            if (creature.getHealthPoints() <= 0) {
+                list.add(creature);
+                continue;
+            }
             creature.makeMove(map);
         }
 
+        for (Creature creature : list) {
+            map.getCreatures().remove(creature);
+        }
     }
 
     private void setupEntitiesPositions() { //настройка позиций сущностей
         createEntity(new Rock(generateRandomCoordinates(map.getRows(), map.getColumns())), 7); //7
         createEntity(new Tree(generateRandomCoordinates(map.getRows(), map.getColumns())), 12); //12
         createEntity(new Grass(generateRandomCoordinates(map.getRows(), map.getColumns())), 17); //17
-        createEntity(new Herbivore(generateRandomCoordinates(map.getRows(), map.getColumns())), 7); //7
-        createEntity(new Predator(generateRandomCoordinates(map.getRows(), map.getColumns())), 3); //3
+        createEntity(new Herbivore(generateRandomCoordinates(map.getRows(), map.getColumns())), 12); //7
+        createEntity(new Predator(generateRandomCoordinates(map.getRows(), map.getColumns())), 1); //3
     }
 
     private void createEntity(Entity entity, int count){

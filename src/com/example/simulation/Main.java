@@ -50,15 +50,18 @@ public class Main {
 //        Actions actions = new Actions(map);
 //
 //        while (count < 10) {
+//            if (count == 6) {
+//                int a = 123;
+//            }
 //            actions.turnActions();
 //            mapConsoleRenderer.render(map);
 //
-//            path = PathSearchAlgorithm.getPath(coordinates, predator.getFood(), map);
+//            path = PathSearchAlgorithm.getPath(predator.getCoordinates(), predator.getFood(), map);
 //            pathList = new ArrayList<>(path);
 //            Collections.reverse(pathList);
 //            System.out.println("Хищник" + pathList);
 //
-//            pathHerbivore = PathSearchAlgorithm.getPath(coordinates1, herbivore.getFood(), map);
+//            pathHerbivore = PathSearchAlgorithm.getPath(herbivore.getCoordinates(), herbivore.getFood(), map);
 //            pathListHerbivore = new ArrayList<>(pathHerbivore);
 //            Collections.reverse(pathListHerbivore);
 //            System.out.println("Кролик" + pathListHerbivore);

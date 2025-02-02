@@ -26,9 +26,6 @@ public abstract class Creature extends Entity { //существо
     }
 
     public void makeMove(Map map) {
-//        //TODO
-    //найти цель
-//        List<Coordinates> list = new ArrayList<>(PathSearchAlgorithm.getPath(getCoordinates(), food, map));
         List<Coordinates> pathList = new ArrayList<>(PathSearchAlgorithm.getPath(getCoordinates(), food, map));
         Collections.reverse(pathList);
 
@@ -62,11 +59,6 @@ public abstract class Creature extends Entity { //существо
             //кол-во атаки равно количеству оставшихся ходов
         }
 
-
-        // TODO makeAttack(int number) - совершить атаку(количество раз)
-//        makeAttack(numberAttacks);
-        // TODO map.statusCreature() проверяет кол-во жизней у сущности, при необходимости удаляет её
-
         //если цели нет -1 жизнь каждый ход
     //если цель есть определить путь (сделать ход на возможное количество ходов)
 
@@ -83,27 +75,11 @@ public abstract class Creature extends Entity { //существо
                 entity.setHealthPoints(entity.getHealthPoints() - attackDamage);
             } else {
                 map.removeEntity(target);
-//                if (entity instanceof Creature) {
-//                    map.getCreatures().remove((Creature) entity); //TODO вылетает исключение. Изменнение коллекции во время итерации
-//                }
                 map.makeMove(start, target);
                 return;
             }
         }
     }
-
-//    private int getStepCount(int numberOfSteps, int number) {
-//        int count = number - 2;
-//        if (count == numberOfSteps) {
-//            return count = numberOfSteps;
-//        } else if (count < numberOfSteps) {
-//            if ()
-//        }
-//    }
-//
-//    public void targetSearch() {
-//        //TODO
-//    }
 
     protected Set<CoordinatesShift> getCreatureMoves() {
         Set<CoordinatesShift> result = new HashSet<>();
