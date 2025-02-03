@@ -4,7 +4,7 @@ import com.example.simulation.Entitys.*;
 
 import java.util.*;
 
-public class Actions { //действия
+public class Actions {
     private final Map map;
     //initActions - действия, совершаемые перед стартом симуляции. Пример - расставить объекты и существ на карте
     //turnActions - действия, совершаемые каждый ход. Примеры - передвижение существ, добавить травы или травоядных, если их осталось слишком мало
@@ -17,7 +17,7 @@ public class Actions { //действия
         setupEntitiesPositions();
     }
 
-    public void turnActions() { //TODO
+    public void turnActions() {
         List<Creature> list = new ArrayList<>();
         for (Creature creature : map.getCreatures()) {
             if (creature.getHealthPoints() <= 0) {
@@ -35,12 +35,12 @@ public class Actions { //действия
         }
     }
 
-    private void setupEntitiesPositions() { //настройка позиций сущностей
-        createEntity(new Rock(generateRandomCoordinates(map.getRows(), map.getColumns())), 7); //7
-        createEntity(new Tree(generateRandomCoordinates(map.getRows(), map.getColumns())), 12); //12
-        createEntity(new Grass(generateRandomCoordinates(map.getRows(), map.getColumns())), 17); //17
-        createEntity(new Herbivore(generateRandomCoordinates(map.getRows(), map.getColumns())), 12); //7
-        createEntity(new Predator(generateRandomCoordinates(map.getRows(), map.getColumns())), 1); //3
+    private void setupEntitiesPositions() {
+        createEntity(new Rock(generateRandomCoordinates(map.getRows(), map.getColumns())), 2);
+        createEntity(new Tree(generateRandomCoordinates(map.getRows(), map.getColumns())), 3);
+        createEntity(new Grass(generateRandomCoordinates(map.getRows(), map.getColumns())), 10);
+        createEntity(new Herbivore(generateRandomCoordinates(map.getRows(), map.getColumns())), 12);
+        createEntity(new Predator(generateRandomCoordinates(map.getRows(), map.getColumns())), 1);
     }
 
     private void createEntity(Entity entity, int count){

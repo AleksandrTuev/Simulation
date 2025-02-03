@@ -38,7 +38,6 @@ public class PathSearchAlgorithm {
                                     result.add(targetCoordinates);
 
                                     if (targetCoordinates == from) {
-//                                        result.toArray());
                                         return result;
                                     }
                                 }

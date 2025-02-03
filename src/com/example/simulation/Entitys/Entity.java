@@ -2,9 +2,9 @@ package com.example.simulation.Entitys;
 
 import com.example.simulation.Coordinates;
 
-public abstract class Entity { //сущность (все существа и объекты существующие в симуляции)
-    public Coordinates coordinates;
-    protected int healthPoints; //очков здоровья
+public abstract class Entity {
+    protected Coordinates coordinates;
+    protected int healthPoints;
 
     public Entity(Coordinates coordinates, int healthPoints) {
         this.coordinates = coordinates;

@@ -7,15 +7,12 @@ import com.example.simulation.PathSearchAlgorithm;
 import java.util.*;
 
 public abstract class Creature extends Entity { //существо
-    //скорость (сколько клеток проходит за раз)
-//    protected int healthPoints; //очков здоровья
     protected final int numberOfSteps; //количество шагов/клеток можно делать за ход
     protected final int attackDamage; //урон при атаке цели
-    protected int distanceTraveled; //пройденное расстояние
+    protected int hungerCounter; //счётчик голода
     protected Class <? extends Entity> food;
     public Creature(Coordinates coordinates, int healthPoints, int numberOfSteps, int attackDamage, Class <? extends Entity> food) {
         super(coordinates, healthPoints);
-//        this.healthPoints = healthPoints;
         this.numberOfSteps = numberOfSteps;
         this.attackDamage = attackDamage;
         this.food = food;
@@ -36,7 +33,7 @@ public abstract class Creature extends Entity { //существо
         }
 
         if (pathList.size() == 2) {
-            makeAttack(pathList.get(0), pathList.get(1), numberOfSteps, map); //TODO
+            makeAttack(pathList.get(0), pathList.get(1), numberOfSteps, map);
             return;
         }
 
