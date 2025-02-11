@@ -1,17 +1,13 @@
 package com.example.simulation.Entitys;
 
-import com.example.simulation.Coordinates;
+import com.example.simulation.Map;
 
-public class Rock extends Entity { //камень
-
-    public Rock(Coordinates coordinates) {
-        super(coordinates, 100);
-    }
+public class Rock extends Entity {
+    @Override
+    public void act(Map map) {}
 
     @Override
-    public String toString() {
-        return "Rock{" +
-                "coordinates=" + coordinates +
-                '}';
+    protected boolean canMove() {
+        return false;
     }
 }

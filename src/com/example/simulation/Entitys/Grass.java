@@ -1,17 +1,13 @@
 package com.example.simulation.Entitys;
 
-import com.example.simulation.Coordinates;
+import com.example.simulation.Map;
 
-public class Grass extends Entity { //трава
-
-    public Grass(Coordinates coordinates) {
-        super(coordinates, 10);
-    }
+public class Grass extends Entity {
+    @Override
+    public void act(Map map) {}
 
     @Override
-    public String toString() {
-        return "Grass{" +
-                "coordinates=" + coordinates +
-                '}';
+    protected boolean canMove() {
+        return false;
     }
 }

@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Map { //карта
+public class Map {
     private final int rows;
     private final int columns;
     private final HashMap<Coordinates, Entity> entities = new HashMap<>();
-    private List<Creature> creatures = new ArrayList<>();
+//    private List<Creature> creatures = new ArrayList<>();
 
     public Map(int rows, int columns) {
         this.rows = rows;
@@ -33,12 +33,26 @@ public class Map { //карта
         return entities.get(coordinates);
     }
 
-    public void makeMove(Coordinates from, Coordinates to) {
+    public void move(Coordinates from, Coordinates to) {
         Entity entity = getEntity(from);
 
+//        Creature creature = (Creature) entity;
+
         removeEntity(from);
-        entity.setCoordinates(to);
+//        creature.setCoordinates(to);
         setEntity(to, entity);
+    }
+
+    public boolean canMove(Entity entity) {
+        return entity instanceof Creature;
+    /*
+    * if (entity instanceof Creature) {
+        Creature creature = (Creature) entity;
+        return creature.isAlive() && !creature.isStunned(); // Пример дополнительных проверок
+    }
+    return false;
+    * Этот код проверяет не только тип объекта, но и его состояние (например, жив ли он и не оглушен ли).
+    * */
     }
 
     public void removeEntity(Coordinates from){
@@ -49,11 +63,11 @@ public class Map { //карта
         entities.put(to, entity);
     }
 
-    public List<Creature> getCreatures() {
-        return creatures;
-    }
-
-    public void setCreatures(Creature creature) {
-        creatures.add(creature);
-    }
+//    public List<Creature> getCreatures() {
+//        return creatures;
+//    }
+//
+//    public void setCreatures(Creature creature) {
+//        creatures.add(creature);
+//    }
 }

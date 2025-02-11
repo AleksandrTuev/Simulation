@@ -1,17 +1,37 @@
 package com.example.simulation.Entitys;
 
 import com.example.simulation.Coordinates;
-import com.example.simulation.PathSearchAlgorithm;
+import com.example.simulation.Map;
 
-import java.util.HashSet;
-import java.util.Set;
+public class Herbivore extends Creature {
+    private static final int INIT_HEALTH = 10;
+    private static final int INIT_SPEED = 2;
+    private static final Class<? extends Entity> INIT_FOOD = Grass.class;
 
-public class Herbivore extends Creature { //травоядное животное
-//    private final int numberOfSteps = 2;
-
-    public Herbivore(Coordinates coordinates) {
-        super(coordinates, 10, 2, 1, Grass.class);
+    public Herbivore() {
+        super(INIT_HEALTH, INIT_SPEED, INIT_FOOD);
     }
 
-    //тратят свой ход на движение к траве или на её поглощение
+    public Herbivore(Coordinates coordinates) {
+        super(coordinates,INIT_HEALTH, INIT_SPEED, INIT_FOOD);
+    }
+
+    @Override
+    protected void makeAttack(Coordinates target, Map map) {
+        map.removeEntity(target);
+        map.move(getCoordinates(), target);
+        setCoordinates(target); //todo
+    }
+
+//    @Override
+//    protected boolean canMove() {
+//        return super.isNotZeroHealth();
+//    }
+
+//    @Override
+//    protected void act(Map map) {
+//        if (this.canMove()) {
+//            super.makeMove(map);
+//        }
+//    }
 }

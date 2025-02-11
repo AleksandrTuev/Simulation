@@ -1,29 +1,13 @@
 package com.example.simulation.Entitys;
 
-import com.example.simulation.Coordinates;
+import com.example.simulation.Map;
 
 public abstract class Entity {
-    protected Coordinates coordinates;
-    protected int healthPoints;
-
-    public Entity(Coordinates coordinates, int healthPoints) {
-        this.coordinates = coordinates;
-        this.healthPoints = healthPoints;
-    }
-
-    public Coordinates getCoordinates() {
-        return coordinates;
-    }
-
-    public void setCoordinates(Coordinates coordinates) {
-        this.coordinates = coordinates;
-    }
-
-    public int getHealthPoints() {
-        return healthPoints;
-    }
-
-    public void setHealthPoints(int healthPoints) {
-        this.healthPoints = healthPoints;
-    }
+//    public void act(Map map) {
+//        if (map.canMove(this)) {
+//            this.makeMove(map);
+//        }
+//    }
+    public abstract void act(Map map);
+    protected abstract boolean canMove();
 }

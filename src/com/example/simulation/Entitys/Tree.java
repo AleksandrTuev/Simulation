@@ -1,17 +1,13 @@
 package com.example.simulation.Entitys;
 
-import com.example.simulation.Coordinates;
+import com.example.simulation.Map;
 
-public class Tree extends Entity { //дерево
-
-    public Tree(Coordinates coordinates) {
-        super(coordinates, 50);
-    }
+public class Tree extends Entity {
+    @Override
+    public void act(Map map) {}
 
     @Override
-    public String toString() {
-        return "Tree{" +
-                "coordinates=" + coordinates +
-                '}';
+    protected boolean canMove() {
+        return false;
     }
 }

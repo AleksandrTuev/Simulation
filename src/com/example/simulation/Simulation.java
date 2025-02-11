@@ -22,12 +22,20 @@ public class Simulation { //general class
         mapConsoleRenderer.render(map);
         System.out.println("Количество ходов с момента старта: " + count);
 
-        while (!(map.getCreatures().isEmpty())) {
+//        while (count < 25) {
+//            count++;
+//            actions.turnActions();
+//            System.out.println();
+//            mapConsoleRenderer.render(map);
+//            System.out.println("Количество ходов с момента старта: " + count);
+//        }
+        while (map.getEntities().size() > 2) {
             count++;
             actions.turnActions();
             System.out.println();
             mapConsoleRenderer.render(map);
             System.out.println("Количество ходов с момента старта: " + count);
         }
+        int a = 123;
     }
 }

@@ -5,6 +5,11 @@ import com.example.simulation.Entitys.*;
 import java.util.*;
 
 public class Actions {
+    private static final int AMOUNT_GRASS = 20;
+    private static final int AMOUNT_ROCK = 1;
+    private static final int AMOUNT_TREE = 1;
+    private static final int AMOUNT_HERBIVORE = 5;
+    private static final int AMOUNT_PREDATOR = 1;
     private final Map map;
     //initActions - действия, совершаемые перед стартом симуляции. Пример - расставить объекты и существ на карте
     //turnActions - действия, совершаемые каждый ход. Примеры - передвижение существ, добавить травы или травоядных, если их осталось слишком мало
@@ -18,57 +23,46 @@ public class Actions {
     }
 
     public void turnActions() {
-        List<Creature> list = new ArrayList<>();
-        for (Creature creature : map.getCreatures()) {
-            if (creature.getHealthPoints() <= 0) {
-                list.add(creature);
-                continue;
-            }
-            creature.makeMove(map);
-        }
-
-        for (Creature creature : list) {
-            map.getCreatures().remove(creature);
-            if (map.getEntities().containsValue(creature)) {
-                map.removeEntity(creature.getCoordinates()); //удаляет последнее существо
-            }
+        HashMap<Coordinates, Entity> entityHashMap = new HashMap<>(map.getEntities());
+        for (Entity entity : entityHashMap.values()) {
+            entity.act(map); //todo пересмотреть мапу
         }
     }
 
     private void setupEntitiesPositions() {
-        createEntity(new Rock(generateRandomCoordinates(map.getRows(), map.getColumns())), 2);
-        createEntity(new Tree(generateRandomCoordinates(map.getRows(), map.getColumns())), 3);
-        createEntity(new Grass(generateRandomCoordinates(map.getRows(), map.getColumns())), 10);
-        createEntity(new Herbivore(generateRandomCoordinates(map.getRows(), map.getColumns())), 12);
-        createEntity(new Predator(generateRandomCoordinates(map.getRows(), map.getColumns())), 1);
+        createEntity(new Rock(), AMOUNT_ROCK);
+        createEntity(new Tree(), AMOUNT_TREE);
+        createEntity(new Grass(), AMOUNT_GRASS);
+        createEntity(new Herbivore(), AMOUNT_HERBIVORE);
+        createEntity(new Predator(), AMOUNT_PREDATOR);
     }
 
     private void createEntity(Entity entity, int count){
         Coordinates coordinates;
+        int rows = map.getRows();
+        int columns = map.getColumns();
 
         for (int i = 0; i < count; i++) {
             if (entity instanceof Rock){
-                coordinates = generateRandomCoordinates(map.getRows(), map.getColumns());
-                Rock rock = new Rock(coordinates);
+                coordinates = generateRandomCoordinates(rows, columns);
+                Rock rock = new Rock();
                 map.getEntities().put(coordinates, rock);
             } else if (entity instanceof Tree) {
-                coordinates = generateRandomCoordinates(map.getRows(), map.getColumns());
-                Tree tree = new Tree(coordinates);
+                coordinates = generateRandomCoordinates(rows, columns);
+                Tree tree = new Tree();
                 map.getEntities().put(coordinates, tree);
             } else if (entity instanceof Grass) {
-                coordinates = generateRandomCoordinates(map.getRows(), map.getColumns());
-                Grass grass = new Grass(coordinates);
+                coordinates = generateRandomCoordinates(rows, columns);
+                Grass grass = new Grass();
                 map.getEntities().put(coordinates, grass);
             } else if (entity instanceof Herbivore) {
-                coordinates = generateRandomCoordinates(map.getRows(), map.getColumns());
+                coordinates = generateRandomCoordinates(rows, columns);
                 Herbivore herbivore = new Herbivore(coordinates);
                 map.getEntities().put(coordinates, herbivore);
-                map.setCreatures(herbivore);
             } else if (entity instanceof Predator) {
-                coordinates = generateRandomCoordinates(map.getRows(), map.getColumns());
+                coordinates = generateRandomCoordinates(rows, columns);
                 Predator predator = new Predator(coordinates);
                 map.getEntities().put(coordinates, predator);
-                map.setCreatures(predator);
             }
         }
     }

@@ -18,12 +18,12 @@ public class Main {
 //        Coordinates coordinates = new Coordinates(10, 10);
 //        Predator predator = new Predator(coordinates);
 //        map.getEntities().put(coordinates, predator);
-//        map.setCreatures(predator);
+////        map.setCreatures(predator);
 ////
 //        Coordinates coordinates1 = new Coordinates(1, 1);
 //        Herbivore herbivore = new Herbivore(coordinates1);
 //        map.getEntities().put(coordinates1, herbivore);
-//        map.setCreatures(herbivore);
+////        map.setCreatures(herbivore);
 //
 //        Coordinates coordinates2 = new Coordinates(4, 9);
 //        Grass grass = new Grass(coordinates2);

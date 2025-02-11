@@ -6,16 +6,44 @@ import com.example.simulation.PathSearchAlgorithm;
 
 import java.util.*;
 
-public abstract class Creature extends Entity { //существо
-    protected final int numberOfSteps; //количество шагов/клеток можно делать за ход
-    protected final int attackDamage; //урон при атаке цели
-    protected int hungerCounter; //счётчик голода
-    protected Class <? extends Entity> food;
-    public Creature(Coordinates coordinates, int healthPoints, int numberOfSteps, int attackDamage, Class <? extends Entity> food) {
-        super(coordinates, healthPoints);
-        this.numberOfSteps = numberOfSteps;
-        this.attackDamage = attackDamage;
+public abstract class Creature extends Entity {
+    protected Coordinates coordinates;
+    protected int health;
+    protected final int speed;
+//    protected final int attackDamage; //урон при атаке цели
+//    protected int hungerCounter; //счётчик голода
+    protected final Class <? extends Entity> food;
+    public Creature(Coordinates coordinates, int health, int speed, Class <? extends Entity> food) {
+        this.coordinates = coordinates;
+        this.health = health;
+        this.speed = speed;
         this.food = food;
+    }
+
+    public Creature(int health, int speed, Class <? extends Entity> food) {
+        this.health = health;
+        this.speed = speed;
+        this.food = food;
+    }
+
+    public Coordinates getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(Coordinates coordinates) {
+        this.coordinates = coordinates;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getSpeed() {
+        return speed;
     }
 
     public Class<? extends Entity> getFood() {
@@ -23,105 +51,64 @@ public abstract class Creature extends Entity { //существо
     }
 
     public void makeMove(Map map) {
-        List<Coordinates> pathList = new ArrayList<>(PathSearchAlgorithm.getPath(getCoordinates(), food, map));
+        LinkedHashSet<Coordinates> path = PathSearchAlgorithm.getPath(coordinates, food, map);
+        List<Coordinates> pathList = new ArrayList<>(path);
         Collections.reverse(pathList);
 
         if (pathList.isEmpty()) {
-            //Если координат нет, то -1 hp
-            setHealthPoints(getHealthPoints() - 1);
+            health--;
             return;
         }
 
         if (pathList.size() == 2) {
-            makeAttack(pathList.get(0), pathList.get(1), numberOfSteps, map);
+            Coordinates target = pathList.getLast();
+            makeAttack(target, map);
             return;
         }
 
-        int count = pathList.size() - 2;
-        int numberAttacks = 0;
-        Coordinates coordinates;
+        int countCells = pathList.size() - 2;
 
-        if (count >= numberOfSteps) {
-            count = numberOfSteps;
-            coordinates = pathList.get(count);
-            map.makeMove(getCoordinates(), coordinates);
+        if (countCells >= speed) {
+            countCells = speed;
+            Coordinates coordinates = pathList.get(countCells);
+            map.move(getCoordinates(), coordinates);
+            setCoordinates(coordinates); //todo
+        } else if (countCells > 0) {
+            Coordinates coordinates = pathList.get(countCells);
+            map.move(getCoordinates(), coordinates);
+            setCoordinates(coordinates); //todo
+        }
+    }
+
+    protected abstract void makeAttack(Coordinates target, Map map);
+
+    protected boolean isNotZeroHealth() {
+        return health > 0;
+    }
+
+    @Override
+    protected boolean canMove() {
+        return isNotZeroHealth();
+    }
+
+    @Override
+    public void act(Map map) {
+        if (canMove()) {
+            makeMove(map);
         } else {
-            //count = кол-во шагов
-//
-            //numberOfSteps - кол-во шагов = кол-во атак
-            coordinates = pathList.get(count);
-            map.makeMove(pathList.get(0), coordinates);
-            numberAttacks = numberOfSteps - count;
-            makeAttack(getCoordinates(), pathList.get(pathList.size() - 1), numberAttacks, map); //TODO
-            //кол-во атаки равно количеству оставшихся ходов
-        }
-
-        //если цели нет -1 жизнь каждый ход
-    //если цель есть определить путь (сделать ход на возможное количество ходов)
-
-    //у травоядных урон атаки 1 клетка - 1 hp
-    //у хищника урон атаки 1 клетка - 2 hp
-    //счётчик ходов, каждые 5 клеток уровень hp уменьшается, если происходит атака, то счётчик обнуляется
-    }
-
-    private void makeAttack(Coordinates start, Coordinates target, int numberAttacks, Map map) {
-        Entity entity = map.getEntities().get(target);
-
-        for (int i = 1; i <= numberAttacks; i++) {
-            if (entity.getHealthPoints() > 0) {
-                entity.setHealthPoints(entity.getHealthPoints() - attackDamage);
-            } else {
-                map.removeEntity(target);
-                map.makeMove(start, target);
-                return;
+            if (this.equals(map.getEntity(coordinates))) {
+                map.removeEntity(coordinates);
             }
         }
-    }
-
-    protected Set<CoordinatesShift> getCreatureMoves() {
-        Set<CoordinatesShift> result = new HashSet<>();
-
-        for (int i = -(numberOfSteps); i <= numberOfSteps; i++){
-            for (int j = -(numberOfSteps); j <= numberOfSteps; j++){
-                if ((i == 0) && (j == 0)) continue;
-
-                result.add(new CoordinatesShift(i, j));
-            }
-        }
-        return result;
-    }
-
-    protected Set<Coordinates> getAvailableMovesSquares(Map map) {
-        Set<Coordinates> result = new HashSet<>();
-
-        for (CoordinatesShift creatureMove : getCreatureMoves()) {
-            if (coordinates.canShift(creatureMove, map)) {
-                Coordinates newCoordinates = coordinates.shift(creatureMove);
-
-                if (isAvailableSquareToMove(newCoordinates, map)) {
-                    result.add(newCoordinates);
-                }
-            }
-        }
-        return result;
-    }
-
-    protected boolean isAvailableSquareToMove(Coordinates coordinates, Map map) {
-        if (map.getEntities().containsKey(coordinates)) {
-            Entity entity = map.getEntity(coordinates);
-
-            return food.equals(entity.getClass());
-        }
-        return true;
     }
 
     @Override
     public String toString() {
         return "Creature{" +
-                "healthPoints=" + healthPoints +
-                ", numberOfSteps=" + numberOfSteps +
+                "coordinates=" + coordinates +
+                ", health=" + health +
+                ", speed=" + speed +
                 ", food=" + food +
-                ", coordinates=" + coordinates +
                 '}';
     }
 }
