@@ -10,9 +10,8 @@ public abstract class Creature extends Entity {
     protected Coordinates coordinates;
     protected int health;
     protected final int speed;
-//    protected final int attackDamage; //урон при атаке цели
-//    protected int hungerCounter; //счётчик голода
     protected final Class <? extends Entity> food;
+
     public Creature(Coordinates coordinates, int health, int speed, Class <? extends Entity> food) {
         this.coordinates = coordinates;
         this.health = health;
@@ -60,35 +59,38 @@ public abstract class Creature extends Entity {
             return;
         }
 
-        if (pathList.size() == 2) {
+        if (isFoodReachable(pathList)) {
             Coordinates target = pathList.getLast();
             makeAttack(target, map);
             return;
         }
 
-        int countCells = pathList.size() - 2;
+        moveAlongPath(pathList, map);
+    }
 
-        if (countCells >= speed) {
-            countCells = speed;
-            Coordinates coordinates = pathList.get(countCells);
-            map.move(getCoordinates(), coordinates);
-            setCoordinates(coordinates); //todo
-        } else if (countCells > 0) {
-            Coordinates coordinates = pathList.get(countCells);
-            map.move(getCoordinates(), coordinates);
-            setCoordinates(coordinates); //todo
+    private boolean isFoodReachable(List<Coordinates> pathList) {
+        return pathList.size() == 2;
+    }
+
+    private void moveAlongPath(List<Coordinates> pathList, Map map) {
+        int steps = Math.min(pathList.size() - 2, speed);
+
+        if (steps > 0) {
+            Coordinates newCoordinates = pathList.get(steps);
+            map.move(getCoordinates(), newCoordinates);
+            setCoordinates(newCoordinates);
         }
     }
 
     protected abstract void makeAttack(Coordinates target, Map map);
 
-    protected boolean isNotZeroHealth() {
+    protected boolean isALive() {
         return health > 0;
     }
 
     @Override
     protected boolean canMove() {
-        return isNotZeroHealth();
+        return isALive();
     }
 
     @Override

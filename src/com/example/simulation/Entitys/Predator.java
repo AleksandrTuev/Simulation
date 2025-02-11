@@ -30,22 +30,9 @@ public class Predator extends Creature {
             } else {
                 map.removeEntity(target);
                 map.move(getCoordinates(), target);
-                setCoordinates(target); //todo
-                int a = 123;
+                setCoordinates(target);
                 return;
             }
         }
     }
-
-//    @Override
-//    protected boolean canMove() {
-//        return true;
-//    }
-
-//    @Override
-//    protected void act(Map map) {
-//        if (this.canMove()) {
-//            super.makeMove(map);
-//        }
-//    }
 }

@@ -23,9 +23,9 @@ public class Actions {
     }
 
     public void turnActions() {
-        HashMap<Coordinates, Entity> entityHashMap = new HashMap<>(map.getEntities());
-        for (Entity entity : entityHashMap.values()) {
-            entity.act(map); //todo пересмотреть мапу
+        HashMap<Coordinates, Entity> copyMapEntities = new HashMap<>(map.getEntities());
+        for (Entity entity : copyMapEntities.values()) {
+            entity.act(map);
         }
     }
 

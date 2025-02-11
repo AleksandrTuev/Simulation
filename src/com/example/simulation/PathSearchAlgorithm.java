@@ -33,8 +33,7 @@ public class PathSearchAlgorithm {
                                 result.add(targetCoordinates);
 
                                 while (true) {
-                                    Coordinates newCoordinates = path.get(targetCoordinates);
-                                    targetCoordinates = newCoordinates;
+                                    targetCoordinates = path.get(targetCoordinates);
                                     result.add(targetCoordinates);
 
                                     if (targetCoordinates == from) {

@@ -28,12 +28,12 @@ public class Coordinates {
     }
 
     public Coordinates shift(CoordinatesShift coordinatesShift) {
-        return new Coordinates(row + coordinatesShift.rowShift, column + coordinatesShift.columnShift);
+        return new Coordinates(row + coordinatesShift.getRowShift(), column + coordinatesShift.getColumnShift());
     }
 
     public boolean canShift(CoordinatesShift coordinatesShift, Map map) {
-        int i = row + coordinatesShift.rowShift;
-        int j = column + coordinatesShift.columnShift;
+        int i = row + coordinatesShift.getRowShift();
+        int j = column + coordinatesShift.getColumnShift();
 
         if ((i < 1) || (i > map.getRows())) return false;
         if ((j < 1) || (j > map.getColumns())) return false;
