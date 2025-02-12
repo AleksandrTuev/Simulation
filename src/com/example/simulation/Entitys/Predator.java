@@ -29,8 +29,11 @@ public class Predator extends Creature {
                 herbivore.setHealth(herbivore.getHealth() - 1);
             } else {
                 map.removeEntity(target);
-                map.move(getCoordinates(), target);
-                setCoordinates(target);
+//                map.removeEntity(coordinates);
+////                map.move(getCoordinates(), target);
+//                setCoordinates(target);
+//                map.setEntity(target, this);
+                updatePosition(target, map);
                 return;
             }
         }

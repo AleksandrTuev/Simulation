@@ -19,7 +19,10 @@ public class Herbivore extends Creature {
     @Override
     protected void makeAttack(Coordinates target, Map map) {
         map.removeEntity(target);
-        map.move(getCoordinates(), target);
-        setCoordinates(target);
+//        map.move(getCoordinates(), target);
+//        map.removeEntity(coordinates);
+//        setCoordinates(target);
+//        map.setEntity(target, this);
+        updatePosition(target, map);
     }
 }

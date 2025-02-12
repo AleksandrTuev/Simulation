@@ -77,9 +77,17 @@ public abstract class Creature extends Entity {
 
         if (steps > 0) {
             Coordinates newCoordinates = pathList.get(steps);
-            map.move(getCoordinates(), newCoordinates);
-            setCoordinates(newCoordinates);
+            updatePosition(newCoordinates, map);
+//            map.removeEntity(this.coordinates);
+//            setCoordinates(newCoordinates);
+//            map.setEntity(newCoordinates, this);
         }
+    }
+
+    protected void updatePosition(Coordinates newCoordinates, Map map) {
+        map.removeEntity(this.coordinates);
+        setCoordinates(newCoordinates);
+        map.setEntity(newCoordinates, this);
     }
 
     protected abstract void makeAttack(Coordinates target, Map map);
