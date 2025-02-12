@@ -22,7 +22,8 @@ public class Predator extends Creature {
 
     @Override
     protected void makeAttack(Coordinates target, Map map) {
-        Herbivore herbivore = (Herbivore) map.getEntities().get(target);
+//        Herbivore herbivore = (Herbivore) map.getEntities().get(target);
+        Herbivore herbivore = (Herbivore) map.getEntity(target);
 
         for (int i = 1; i <= ATTACK_DAMAGE; i++) {
             if (herbivore.getHealth() > 0) {

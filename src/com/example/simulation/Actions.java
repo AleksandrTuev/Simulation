@@ -23,8 +23,11 @@ public class Actions {
     }
 
     public void turnActions() {
-        HashMap<Coordinates, Entity> copyMapEntities = new HashMap<>(map.getEntities());
-        for (Entity entity : copyMapEntities.values()) {
+//        HashMap<Coordinates, Entity> copyMapEntities = new HashMap<>(map.getEntities());
+//        for (Entity entity : copyMapEntities.values()) {
+//            entity.act(map);
+//        }
+        for (Entity entity : map.getEntities().values()) {
             entity.act(map);
         }
     }
@@ -46,23 +49,28 @@ public class Actions {
             if (entity instanceof Rock){
                 coordinates = generateRandomCoordinates(rows, columns);
                 Rock rock = new Rock();
-                map.getEntities().put(coordinates, rock);
+//                map.getEntities().put(coordinates, rock);
+                map.setEntity(coordinates, rock);
             } else if (entity instanceof Tree) {
                 coordinates = generateRandomCoordinates(rows, columns);
                 Tree tree = new Tree();
-                map.getEntities().put(coordinates, tree);
+//                map.getEntities().put(coordinates, tree);
+                map.setEntity(coordinates, tree);
             } else if (entity instanceof Grass) {
                 coordinates = generateRandomCoordinates(rows, columns);
                 Grass grass = new Grass();
-                map.getEntities().put(coordinates, grass);
+//                map.getEntities().put(coordinates, grass);
+                map.setEntity(coordinates, grass);
             } else if (entity instanceof Herbivore) {
                 coordinates = generateRandomCoordinates(rows, columns);
                 Herbivore herbivore = new Herbivore(coordinates);
-                map.getEntities().put(coordinates, herbivore);
+//                map.getEntities().put(coordinates, herbivore);
+                map.setEntity(coordinates, herbivore);
             } else if (entity instanceof Predator) {
                 coordinates = generateRandomCoordinates(rows, columns);
                 Predator predator = new Predator(coordinates);
-                map.getEntities().put(coordinates, predator);
+//                map.getEntities().put(coordinates, predator);
+                map.setEntity(coordinates, predator);
             }
         }
     }

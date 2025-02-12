@@ -27,7 +27,7 @@ public class Coordinates {
         this.column = column;
     }
 
-    public Coordinates shift(CoordinatesShift coordinatesShift) {
+    public Coordinates add(CoordinatesShift coordinatesShift) {
         return new Coordinates(row + coordinatesShift.getRowShift(), column + coordinatesShift.getColumnShift());
     }
 
@@ -35,10 +35,10 @@ public class Coordinates {
         int i = row + coordinatesShift.getRowShift();
         int j = column + coordinatesShift.getColumnShift();
 
-        if ((i < 1) || (i > map.getRows())) return false;
-        if ((j < 1) || (j > map.getColumns())) return false;
-
-        return true;
+        if ((i < 1) || (i > map.getRows())) {
+            return false;
+        }
+        return (j >= 1) && (j <= map.getColumns());
     }
 
     @Override

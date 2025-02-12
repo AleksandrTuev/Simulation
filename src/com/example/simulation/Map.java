@@ -23,7 +23,12 @@ public class Map {
     }
 
     public HashMap<Coordinates, Entity> getEntities() {
-        return entities;
+//        return entities;
+        return new HashMap<>(entities);
+    }
+
+    public void setEntity(Coordinates to, Entity entity){
+        entities.put(to, entity);
     }
 
     public Entity getEntity(Coordinates coordinates){
@@ -38,9 +43,5 @@ public class Map {
 
     public void removeEntity(Coordinates from){
         entities.remove(from);
-    }
-
-    public void setEntity(Coordinates to, Entity entity){
-        entities.put(to, entity);
     }
 }
