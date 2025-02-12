@@ -27,28 +27,28 @@ public class PathSearchAlgorithm {
                     }
 
                     CoordinatesShift coordinatesShift = new CoordinatesShift(i, j);
+                    Coordinates newCoordinates = coordinates.add(coordinatesShift);
 
-                    if (coordinates.canShift(coordinatesShift, map)) {
-                        if (map.getEntities().containsKey(coordinates.add(coordinatesShift))) {
-                            if (food.equals(map.getEntity(coordinates.add(coordinatesShift)).getClass())) {
-                                path.put(coordinates.add(coordinatesShift), coordinates);
-                                Coordinates targetCoordinates = coordinates.add(coordinatesShift);
-                                result.add(targetCoordinates);
+                    if (map.canShift(coordinates, coordinatesShift)) {
+                        if (map.getEntities().containsKey(newCoordinates)) {
+                            if (food.equals(map.getEntity(newCoordinates).getClass())) {
+                                path.put(newCoordinates, coordinates);
+                                result.add(newCoordinates);
 
                                 while (true) {
-                                    targetCoordinates = path.get(targetCoordinates);
-                                    result.add(targetCoordinates);
+                                    newCoordinates = path.get(newCoordinates);
+                                    result.add(newCoordinates);
 
-                                    if (targetCoordinates == from) {
+                                    if (newCoordinates == from) {
                                         return result;
                                     }
                                 }
                             }
                         } else {
-                            if (!(queue.contains(coordinates.add(coordinatesShift)))) {
-                                if (!(visitedCells.contains(coordinates.add(coordinatesShift)))) {
-                                    queue.addLast(coordinates.add(coordinatesShift));
-                                    path.put(coordinates.add(coordinatesShift), coordinates);
+                            if (!(queue.contains(newCoordinates))) {
+                                if (!(visitedCells.contains(newCoordinates))) {
+                                    queue.addLast(newCoordinates);
+                                    path.put(newCoordinates, coordinates);
                                 }
                             }
                         }

@@ -31,16 +31,6 @@ public class Coordinates {
         return new Coordinates(row + coordinatesShift.getRowShift(), column + coordinatesShift.getColumnShift());
     }
 
-    public boolean canShift(CoordinatesShift coordinatesShift, Map map) {
-        int i = row + coordinatesShift.getRowShift();
-        int j = column + coordinatesShift.getColumnShift();
-
-        if ((i < 1) || (i > map.getRows())) {
-            return false;
-        }
-        return (j >= 1) && (j <= map.getColumns());
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

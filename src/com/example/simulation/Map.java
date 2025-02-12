@@ -23,7 +23,6 @@ public class Map {
     }
 
     public HashMap<Coordinates, Entity> getEntities() {
-//        return entities;
         return new HashMap<>(entities);
     }
 
@@ -43,5 +42,19 @@ public class Map {
 
     public void removeEntity(Coordinates from){
         entities.remove(from);
+    }
+
+    public boolean canShift(Coordinates coordinates, CoordinatesShift coordinatesShift) {
+        int i = coordinates.getRow() + coordinatesShift.getRowShift();
+        int j = coordinates.getColumn() + coordinatesShift.getColumnShift();
+
+        if ((i < 1) || (i > rows)) {
+            return false;
+        }
+        return (j >= 1) && (j <= columns);
+    }
+
+    public boolean isAvailableCell(Coordinates coordinates) {
+        return (!entities.containsKey(coordinates));
     }
 }
