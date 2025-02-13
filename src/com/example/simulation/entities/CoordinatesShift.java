@@ -1,4 +1,4 @@
-package com.example.simulation.Entitys;
+package com.example.simulation.entities;
 
 public class CoordinatesShift {
     private final int rowShift;

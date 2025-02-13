@@ -1,6 +1,6 @@
 package com.example.simulation;
 
-import com.example.simulation.Entitys.*;
+import com.example.simulation.entities.*;
 
 import java.util.HashMap;
 

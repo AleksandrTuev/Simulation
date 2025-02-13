@@ -1,12 +1,14 @@
 package com.example.simulation;
 
+import com.example.simulation.actions.Actions;
+
 public class Simulation {
     private final Map map;
     private int count = 0;
     //com.example.simulation.Map
     //Count
     //Рендерер поля (отрисовка)
-    //com.example.simulation.Actions - список действий, исполняемых перед стартом симуляции или на каждом ходу
+    //com.example.simulation.actions.Actions - список действий, исполняемых перед стартом симуляции или на каждом ходу
 
 
     public Simulation(int rows, int columns) {

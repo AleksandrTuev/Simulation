@@ -1,8 +1,8 @@
-package com.example.simulation.Entitys;
+package com.example.simulation.entities;
 
 import com.example.simulation.Map;
 
-public class Grass extends Entity {
+public class Tree extends Entity {
     @Override
     public void act(Map map) {}
 

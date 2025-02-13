@@ -1,6 +1,8 @@
-package com.example.simulation;
+package com.example.simulation.actions;
 
-import com.example.simulation.Entitys.*;
+import com.example.simulation.Coordinates;
+import com.example.simulation.Map;
+import com.example.simulation.entities.*;
 
 import java.util.*;
 
@@ -10,7 +12,7 @@ public class Actions {
     private static final int AMOUNT_TREE = 1;
     private static final int AMOUNT_HERBIVORE = 5;
     private static final int AMOUNT_PREDATOR = 1;
-    private final Map map;
+    private final com.example.simulation.Map map;
     //initActions - действия, совершаемые перед стартом симуляции. Пример - расставить объекты и существ на карте
     //turnActions - действия, совершаемые каждый ход. Примеры - передвижение существ, добавить травы или травоядных, если их осталось слишком мало
 

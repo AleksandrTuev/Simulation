@@ -1,6 +1,6 @@
 package com.example.simulation;
 
-import com.example.simulation.Entitys.CoordinatesShift;
+import com.example.simulation.entities.CoordinatesShift;
 
 public class Coordinates {
     private int row;

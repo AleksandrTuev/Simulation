@@ -1,6 +1,6 @@
 package com.example.simulation;
 
-import com.example.simulation.Entitys.*;
+import com.example.simulation.entities.*;
 
 public class MapConsoleRenderer {
     private final String UNICODE_HERBIVORE = "🐇";

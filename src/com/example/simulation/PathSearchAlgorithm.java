@@ -1,7 +1,7 @@
 package com.example.simulation;
 
-import com.example.simulation.Entitys.CoordinatesShift;
-import com.example.simulation.Entitys.Entity;
+import com.example.simulation.entities.CoordinatesShift;
+import com.example.simulation.entities.Entity;
 
 import java.util.*;
 

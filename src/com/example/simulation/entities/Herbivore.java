@@ -1,4 +1,4 @@
-package com.example.simulation.Entitys;
+package com.example.simulation.entities;
 
 import com.example.simulation.Coordinates;
 import com.example.simulation.Map;
