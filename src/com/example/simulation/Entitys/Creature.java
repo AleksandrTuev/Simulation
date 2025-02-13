@@ -78,9 +78,6 @@ public abstract class Creature extends Entity {
         if (steps > 0) {
             Coordinates newCoordinates = pathList.get(steps);
             updatePosition(newCoordinates, map);
-//            map.removeEntity(this.coordinates);
-//            setCoordinates(newCoordinates);
-//            map.setEntity(newCoordinates, this);
         }
     }
 

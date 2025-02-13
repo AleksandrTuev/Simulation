@@ -1,6 +1,6 @@
 package com.example.simulation;
 
-public class Simulation { //general class
+public class Simulation {
     private final Map map;
     private int count = 0;
     //com.example.simulation.Map

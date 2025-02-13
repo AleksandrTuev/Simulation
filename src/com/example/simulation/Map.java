@@ -34,12 +34,6 @@ public class Map {
         return entities.get(coordinates);
     }
 
-    public void move(Coordinates from, Coordinates to) {
-        Entity entity = getEntity(from);
-        removeEntity(from);
-        setEntity(to, entity);
-    }
-
     public void removeEntity(Coordinates from){
         entities.remove(from);
     }

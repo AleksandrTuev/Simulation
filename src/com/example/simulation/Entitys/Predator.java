@@ -2,9 +2,6 @@ package com.example.simulation.Entitys;
 
 import com.example.simulation.Coordinates;
 import com.example.simulation.Map;
-import com.example.simulation.PathSearchAlgorithm;
-
-import java.util.*;
 
 public class Predator extends Creature {
     private static final int INIT_HEALTH = 10;
@@ -29,10 +26,6 @@ public class Predator extends Creature {
                 herbivore.setHealth(herbivore.getHealth() - 1);
             } else {
                 map.removeEntity(target);
-//                map.removeEntity(coordinates);
-////                map.move(getCoordinates(), target);
-//                setCoordinates(target);
-//                map.setEntity(target, this);
                 updatePosition(target, map);
                 return;
             }
