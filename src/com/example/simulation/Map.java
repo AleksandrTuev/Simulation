@@ -1,6 +1,7 @@
 package com.example.simulation;
 
 import com.example.simulation.entities.*;
+import com.example.simulation.exceptions.OutOfMapBoundsException;
 
 import java.util.HashMap;
 
@@ -26,29 +27,51 @@ public class Map {
         return new HashMap<>(entities);
     }
 
-    public void setEntity(Coordinates to, Entity entity){
-        entities.put(to, entity);
+    public void setEntity(Coordinates coordinates, Entity entity) {
+        if (!(isCoordinatesValid(coordinates))) {
+            throw new OutOfMapBoundsException(
+                            String.format("Сoordinate is outside the map: %d: %d",
+                            coordinates.getRow(),
+                            coordinates.getColumn()));
+        }
+        entities.put(coordinates, entity);
     }
 
-    public Entity getEntity(Coordinates coordinates){
+    public Entity getEntity(Coordinates coordinates) {
+        if (!(isCoordinatesValid(coordinates))) {
+            throw new OutOfMapBoundsException(
+                            String.format("Сoordinate is outside the map: %d: %d",
+                            coordinates.getRow(),
+                            coordinates.getColumn()));
+        }
         return entities.get(coordinates);
     }
 
-    public void removeEntity(Coordinates from){
-        entities.remove(from);
+    public void removeEntity(Coordinates coordinates) {
+        if (!(isCoordinatesValid(coordinates))) {
+            throw new OutOfMapBoundsException(
+                            String.format("Сoordinate is outside the map: %d: %d",
+                            coordinates.getRow(),
+                            coordinates.getColumn()));
+        }
+        entities.remove(coordinates);
     }
 
     public boolean canShift(Coordinates coordinates, CoordinatesShift coordinatesShift) {
-        int i = coordinates.getRow() + coordinatesShift.getRowShift();
-        int j = coordinates.getColumn() + coordinatesShift.getColumnShift();
+        int row = coordinates.getRow() + coordinatesShift.getRowShift();
+        int column = coordinates.getColumn() + coordinatesShift.getColumnShift();
 
-        if ((i < 1) || (i > rows)) {
-            return false;
-        }
-        return (j >= 1) && (j <= columns);
+        return isCoordinatesValid(new Coordinates(row, column));
     }
 
     public boolean isAvailableCell(Coordinates coordinates) {
         return (!entities.containsKey(coordinates));
+    }
+
+    public boolean isCoordinatesValid(Coordinates coordinates) {
+        if ((coordinates.getRow() < 1) || (coordinates.getRow() > rows)) {
+            return false;
+        }
+        return (coordinates.getColumn() >= 1) && (coordinates.getColumn() <= columns);
     }
 }
