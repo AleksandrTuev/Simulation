@@ -28,32 +28,17 @@ public class Map {
     }
 
     public void setEntity(Coordinates coordinates, Entity entity) {
-        if (!(isCoordinatesValid(coordinates))) {
-            throw new OutOfMapBoundsException(
-                            String.format("Сoordinate is outside the map: %d: %d",
-                            coordinates.getRow(),
-                            coordinates.getColumn()));
-        }
+        validateCoordinates(coordinates);
         entities.put(coordinates, entity);
     }
 
     public Entity getEntity(Coordinates coordinates) {
-        if (!(isCoordinatesValid(coordinates))) {
-            throw new OutOfMapBoundsException(
-                            String.format("Сoordinate is outside the map: %d: %d",
-                            coordinates.getRow(),
-                            coordinates.getColumn()));
-        }
+        validateCoordinates(coordinates);
         return entities.get(coordinates);
     }
 
     public void removeEntity(Coordinates coordinates) {
-        if (!(isCoordinatesValid(coordinates))) {
-            throw new OutOfMapBoundsException(
-                            String.format("Сoordinate is outside the map: %d: %d",
-                            coordinates.getRow(),
-                            coordinates.getColumn()));
-        }
+        validateCoordinates(coordinates);
         entities.remove(coordinates);
     }
 
@@ -73,5 +58,11 @@ public class Map {
             return false;
         }
         return (coordinates.getColumn() >= 1) && (coordinates.getColumn() <= columns);
+    }
+
+    private void validateCoordinates(Coordinates coordinates) {
+        if (!(isCoordinatesValid(coordinates))) {
+            throw new OutOfMapBoundsException(String.format("Сoordinate is outside the map: %d: %d", coordinates.getRow(), coordinates.getColumn()));
+        }
     }
 }
