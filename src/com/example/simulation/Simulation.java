@@ -1,9 +1,6 @@
 package com.example.simulation;
 
-import com.example.simulation.actions.Action;
-import com.example.simulation.actions.InitAction;
-import com.example.simulation.actions.MapRendererAction;
-import com.example.simulation.actions.TurnAction;
+import com.example.simulation.actions.*;
 
 import java.util.List;
 
@@ -36,10 +33,35 @@ public class Simulation {
 //            mapConsoleRenderer.render(map);
 //            System.out.println("Количество ходов с момента старта: " + count);
 //        }
-        List<Action> actions = List.of(new InitAction(), new MapRendererAction(), new TurnAction(), new MapRendererAction());
-        for (Action action : actions) {
-            action.execute(map);
-            System.out.println();
+
+
+
+
+
+//        List<Action> actions = List.of(new InitAction(), new MapRendererAction(), new TurnAction(), new MapRendererAction());
+//        for (Action action : actions) {
+//            action.execute(map);
+//            System.out.println();
+//        }
+
+
+
+        Action init = new InitAction();
+        Action render = new MapRendererAction();
+        Action turn = new TurnAction();
+        Action spawn = new SpawnAction();
+
+        init.execute(map);
+        render.execute(map);
+
+        while (count < 50) {
+            System.out.println("Ход: " + count);
+            turn.execute(map);
+            if (count % 10 == 0) {
+                spawn.execute(map);
+            }
+            render.execute(map);
+            count++;
         }
     }
 }

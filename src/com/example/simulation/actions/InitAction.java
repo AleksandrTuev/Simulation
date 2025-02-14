@@ -8,8 +8,8 @@ public class InitAction implements Action{
     private static final int AMOUNT_GRASS = 20;
     private static final int AMOUNT_ROCK = 1;
     private static final int AMOUNT_TREE = 1;
-    private static final int AMOUNT_HERBIVORE = 5;
-    private static final int AMOUNT_PREDATOR = 1;
+    private static final int AMOUNT_HERBIVORE = 15;
+    private static final int AMOUNT_PREDATOR = 5;
     private Map map;
     //initActions - действия, совершаемые перед стартом симуляции. Пример - расставить объекты и существ на карте
     //turnActions - действия, совершаемые каждый ход. Примеры - передвижение существ, добавить травы или травоядных, если их осталось слишком мало
