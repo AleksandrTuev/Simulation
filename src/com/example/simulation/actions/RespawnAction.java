@@ -2,9 +2,10 @@ package com.example.simulation.actions;
 
 import com.example.simulation.Coordinates;
 import com.example.simulation.Map;
+import com.example.simulation.actions.spawn_action.RandomAvailableCoordinateGenerator;
 import com.example.simulation.entities.*;
 
-public class SpawnAction implements Action{
+public class RespawnAction implements Action{
     private static final int COEFFICIENT = 3;
     private Map map;
     @Override

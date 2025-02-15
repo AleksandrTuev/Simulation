@@ -1,4 +1,4 @@
-package com.example.simulation.actions;
+package com.example.simulation.actions.spawn_action;
 
 import com.example.simulation.Coordinates;
 import com.example.simulation.Map;
@@ -18,9 +18,14 @@ public class RandomAvailableCoordinateGenerator {
 
             coordinates = new Coordinates(row, column);
 
-            if (map.isAvailableCell(coordinates)) {
+            if (isAvailableCell(coordinates, map)) {
                 return coordinates;
             }
         }
+    }
+
+    private static boolean isAvailableCell(Coordinates coordinates, Map map) {
+        map.isCoordinatesValid(coordinates);
+        return (!map.getEntities().containsKey(coordinates));
     }
 }

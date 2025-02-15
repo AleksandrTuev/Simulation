@@ -1,8 +1,10 @@
 package com.example.simulation.entities;
 
 import com.example.simulation.Coordinates;
+import com.example.simulation.Manager;
 import com.example.simulation.Map;
-import com.example.simulation.PathSearchAlgorithm;
+import com.example.simulation.search_algorithm.BreadthFirstSearch;
+import com.example.simulation.search_algorithm.PathSearchAlgorithm;
 
 import java.util.*;
 
@@ -50,7 +52,9 @@ public abstract class Creature extends Entity {
     }
 
     public void makeMove(Map map) {
-        LinkedHashSet<Coordinates> path = PathSearchAlgorithm.getPath(coordinates, food, map);
+//        PathSearchAlgorithm algorithm = new BreadthFirstSearch();
+//        LinkedHashSet<Coordinates> path = PathSearchAlgorithm.getPath(coordinates, food, map);
+        LinkedHashSet<Coordinates> path = Manager.getDefaultPathSearchAlgorithm().getPath(coordinates, food, map);
         List<Coordinates> pathList = new ArrayList<>(path);
         Collections.reverse(pathList);
 

@@ -20,7 +20,6 @@ public class MapConsoleRenderer {
 
                 if (!(map.getEntities().containsKey(coordinates))){
                     line.append(UNICODE_EMPTY_CELL);
-
                 } else {
                     Entity entity = map.getEntity(coordinates);
 

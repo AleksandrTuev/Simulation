@@ -1,11 +1,17 @@
 package com.example.simulation;
 
-import com.example.simulation.actions.*;
+import com.example.simulation.actions.Action;
+import com.example.simulation.actions.CreatureInteractionAction;
+import com.example.simulation.actions.RespawnAction;
+import com.example.simulation.actions.spawn_action.SpawnAction;
 
 import java.util.List;
 
 public class Simulation {
     private final Map map;
+    private final MapConsoleRenderer mapConsoleRenderer;
+    private List<Action> initActions;
+    private List<Action> turnActions;
     private int count = 0;
     //com.example.simulation.Map
     //Count
@@ -14,10 +20,14 @@ public class Simulation {
 
 
     public Simulation(int rows, int columns) {
-        map = new Map(rows,columns);
+        this.map = new Map(rows,columns);
+        this.mapConsoleRenderer = new MapConsoleRenderer();
+        this.initActions = List.of(new SpawnAction());
+        this.turnActions = List.of(new CreatureInteractionAction(), new RespawnAction());
     }
 
     public void gameLoop() {
+
 //        InitAction initAction = new InitAction(map);
 //        MapConsoleRenderer mapConsoleRenderer = new MapConsoleRenderer();
 //        int count = 1;
@@ -46,22 +56,44 @@ public class Simulation {
 
 
 
-        Action init = new InitAction();
-        Action render = new MapRendererAction();
-        Action turn = new TurnAction();
-        Action spawn = new SpawnAction();
-
-        init.execute(map);
-        render.execute(map);
-
-        while (count < 50) {
-            System.out.println("Ход: " + count);
-            turn.execute(map);
-            if (count % 10 == 0) {
-                spawn.execute(map);
-            }
-            render.execute(map);
-            count++;
-        }
+//        Action init = new SpawnAction();
+//        Action render = new MapRendererAction();
+//        Action turn = new TurnAction();
+//        Action spawn = new RespawnAction();
+//
+//        init.execute(map);
+//        render.execute(map);
+//        count++;
+//
+//        //todo магические числа
+//        while (count < 50) {
+//            System.out.println("Ход: " + count);
+//            turn.execute(map);
+//            if (count % 20 == 0) {
+//                spawn.execute(map);
+////                map.setEntity(new Coordinates(-1, 60), new Herbivore(new Coordinates(-1, 60)));
+////                map.getEntity(new Coordinates(-1, 60));
+////                map.removeEntity(new Coordinates(-1, 60));
+//            }
+//            render.execute(map);
+//            count++;
+//        }
+//
+//        try {
+//            while (count < 50) {
+//                System.out.println("Ход: " + count);
+//                turn.execute(map);
+//                if (count % 20 == 0) {
+//                    spawn.execute(map);
+//                map.setEntity(new Coordinates(-1, 60), new Herbivore(new Coordinates(-1, 60)));
+////                map.getEntity(new Coordinates(-1, 60));
+////                map.removeEntity(new Coordinates(-1, 60));
+//                }
+//                render.execute(map);
+//                count++;
+//            }
+//        } catch (OutOfMapBoundsException exception) {
+//            System.out.println(exception.getMessage());
+//        }
     }
 }

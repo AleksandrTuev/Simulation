@@ -1,10 +1,11 @@
-package com.example.simulation.actions;
+package com.example.simulation.actions.spawn_action;
 
 import com.example.simulation.Coordinates;
 import com.example.simulation.Map;
+import com.example.simulation.actions.Action;
 import com.example.simulation.entities.*;
 
-public class InitAction implements Action{
+public class SpawnAction implements Action {
     private static final int AMOUNT_GRASS = 20;
     private static final int AMOUNT_ROCK = 1;
     private static final int AMOUNT_TREE = 1;
@@ -15,7 +16,7 @@ public class InitAction implements Action{
     //turnActions - действия, совершаемые каждый ход. Примеры - передвижение существ, добавить травы или травоядных, если их осталось слишком мало
 
     @Override
-    public void execute (Map map) {
+    public void execute(Map map) {
         this.map = map;
         setupEntitiesPositions();
     }
