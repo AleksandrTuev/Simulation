@@ -27,7 +27,7 @@ public class Coordinates {
         this.column = column;
     }
 
-    public Coordinates add(CoordinatesShift coordinatesShift) {
+    public Coordinates add(CoordinatesShift coordinatesShift) { //todo перенести в другой класс
         return new Coordinates(row + coordinatesShift.getRowShift(), column + coordinatesShift.getColumnShift());
     }
 
