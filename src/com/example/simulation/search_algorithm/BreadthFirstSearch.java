@@ -1,12 +1,16 @@
-package com.example.simulation;
+package com.example.simulation.search_algorithm;
 
+import com.example.simulation.Coordinates;
+import com.example.simulation.Map;
 import com.example.simulation.entities.CoordinatesShift;
 import com.example.simulation.entities.Entity;
 
 import java.util.*;
 
-public class PathSearchAlgorithm {
-    public static LinkedHashSet<Coordinates> getPath(Coordinates from, Class<? extends Entity> food, Map map) {
+public class BreadthFirstSearch implements PathSearchAlgorithm{
+
+    @Override
+    public LinkedHashSet<Coordinates> getPath(Coordinates from, Class<? extends Entity> food, Map map) {
         Deque<Coordinates> queue = new ArrayDeque<>();
         Set<Coordinates> visitedCells = new HashSet<>();
         HashMap<Coordinates, Coordinates> path = new HashMap<>();
