@@ -1,11 +1,14 @@
 package com.example.simulation;
 
+import com.example.simulation.actions.Action;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Menu { //todo реализовать Меню и разобраться с принципом работы
+public class Menu {
     private static final int START_ID = 1;
+    private static final String UNICODE_IMAGE = "\uD83C\uDF41\uD83C\uDF41\uD83C\uDF41\uD83C\uDF41";
 
     private final String title;
     private final String selectMessage;
@@ -13,11 +16,13 @@ public class Menu { //todo реализовать Меню и разобрать
 
     private int id = START_ID;
     private final List<Item> items = new ArrayList<>();
+    private final Map map;
 
-    public Menu(String title, String selectMessage, String failMessage) {
-        this.title = title;
+    public Menu(String title, String selectMessage, String failMessage, Map map) {
+        this.title = UNICODE_IMAGE + title + UNICODE_IMAGE;
         this.selectMessage = selectMessage;
         this.failMessage = failMessage;
+        this.map = map;
     }
 
     public void add(String text, Action action) {
@@ -45,7 +50,7 @@ public class Menu { //todo реализовать Меню и разобрать
                 int num = Integer.parseInt(key);
                 if (num >= START_ID && num < id) {
                     Item item = items.get(num - START_ID);
-                    item.action.execute();
+                    item.action.execute(map);
                     break;
                 }
             }
@@ -60,10 +65,6 @@ public class Menu { //todo реализовать Меню и разобрать
         } catch (NumberFormatException exception) {
             return false;
         }
-    }
-
-    public interface Action {
-        void execute();
     }
 
     private static class Item{
