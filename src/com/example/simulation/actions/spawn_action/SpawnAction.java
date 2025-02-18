@@ -6,8 +6,6 @@ import com.example.simulation.MapConsoleRenderer;
 import com.example.simulation.actions.Action;
 import com.example.simulation.entities.*;
 
-import java.util.List;
-
 public class SpawnAction implements Action {
     private static final int AMOUNT_GRASS = 20;
     private static final int AMOUNT_ROCK = 1;
@@ -63,10 +61,4 @@ public class SpawnAction implements Action {
             }
         }
     }
-
-//    public static boolean hasAvailableCells(Map map) {
-//        int countCells = map.getRows() * map.getColumns();
-//        int countEntity = map.getEntities().size();
-//        return countCells > countEntity;
-//    }
 }

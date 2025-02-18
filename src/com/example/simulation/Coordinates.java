@@ -15,19 +15,11 @@ public class Coordinates {
         return row;
     }
 
-    public void setRow(int row) {
-        this.row = row;
-    }
-
     public int getColumn() {
         return column;
     }
 
-    public void setColumn(int column) {
-        this.column = column;
-    }
-
-    public Coordinates add(CoordinatesShift coordinatesShift) { //todo перенести в другой класс
+    public Coordinates add(CoordinatesShift coordinatesShift) {
         return new Coordinates(row + coordinatesShift.getRowShift(), column + coordinatesShift.getColumnShift());
     }
 

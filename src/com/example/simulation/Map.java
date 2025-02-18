@@ -11,8 +11,6 @@ public class Map {
     private final HashMap<Coordinates, Entity> entities = new HashMap<>();
 
     public Map(int rows, int columns) {
-        //todo сделать проверку что значение row > 0 и column > 0 иначе исключение IllegalFormatException
-
         this.rows = rows;
         this.columns = columns;
     }
@@ -54,10 +52,6 @@ public class Map {
 
         return isCoordinatesValid(new Coordinates(row, column));
     }
-
-//    public boolean isAvailableCell(Coordinates coordinates) {
-//        return (!entities.containsKey(coordinates));
-//    }
 
     public boolean isCoordinatesValid(Coordinates coordinates) {
         if ((coordinates.getRow() < 1) || (coordinates.getRow() > rows)) {

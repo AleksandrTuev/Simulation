@@ -21,7 +21,6 @@ public class RandomAvailableCoordinateGenerator {
             if (isAvailableCell(coordinates, map)) {
                 return coordinates;
             }
-            //todo написать метод по просмотру общего количества ячеек и количество занятых
         }
     }
 

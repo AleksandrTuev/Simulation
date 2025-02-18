@@ -7,5 +7,5 @@ import com.example.simulation.entities.Entity;
 import java.util.LinkedHashSet;
 
 public interface PathSearchAlgorithm {
-    public LinkedHashSet<Coordinates> getPath(Coordinates from, Class<? extends Entity> food, Map map);
+    LinkedHashSet<Coordinates> getPath(Coordinates from, Class<? extends Entity> food, Map map);
 }
