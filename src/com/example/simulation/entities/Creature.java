@@ -3,8 +3,6 @@ package com.example.simulation.entities;
 import com.example.simulation.Coordinates;
 import com.example.simulation.Manager;
 import com.example.simulation.Map;
-import com.example.simulation.search_algorithm.BreadthFirstSearch;
-import com.example.simulation.search_algorithm.PathSearchAlgorithm;
 
 import java.util.*;
 
@@ -43,17 +41,7 @@ public abstract class Creature extends Entity {
         this.health = health;
     }
 
-    public int getSpeed() {
-        return speed;
-    }
-
-    public Class<? extends Entity> getFood() {
-        return food;
-    }
-
     public void makeMove(Map map) {
-//        PathSearchAlgorithm algorithm = new BreadthFirstSearch();
-//        LinkedHashSet<Coordinates> path = PathSearchAlgorithm.getPath(coordinates, food, map);
         LinkedHashSet<Coordinates> path = Manager.getDefaultPathSearchAlgorithm().getPath(coordinates, food, map);
         List<Coordinates> pathList = new ArrayList<>(path);
         Collections.reverse(pathList);
@@ -66,10 +54,15 @@ public abstract class Creature extends Entity {
         if (isFoodReachable(pathList)) {
             Coordinates target = pathList.getLast();
             makeAttack(target, map);
+            increaseLife();
             return;
         }
 
         moveAlongPath(pathList, map);
+    }
+
+    private void increaseLife() {
+        health++;
     }
 
     private boolean isFoodReachable(List<Coordinates> pathList) {
