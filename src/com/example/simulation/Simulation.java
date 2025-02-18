@@ -1,8 +1,9 @@
 package com.example.simulation;
 
-import com.example.simulation.actions.Action;
-import com.example.simulation.actions.CreatureInteractionAction;
-import com.example.simulation.actions.RespawnAction;
+import com.example.simulation.actions.*;
+import com.example.simulation.actions.spawn_action.RespawnGrassAction;
+import com.example.simulation.actions.spawn_action.RespawnHerbivoreAction;
+import com.example.simulation.actions.spawn_action.RespawnPredatorAction;
 import com.example.simulation.actions.spawn_action.SpawnAction;
 
 import java.util.List;
@@ -23,77 +24,38 @@ public class Simulation {
         this.map = new Map(rows,columns);
         this.mapConsoleRenderer = new MapConsoleRenderer();
         this.initActions = List.of(new SpawnAction());
-        this.turnActions = List.of(new CreatureInteractionAction(), new RespawnAction());
+        this.turnActions = List.of(new CreatureInteractionAction(), new RespawnHerbivoreAction());
     }
 
     public void gameLoop() {
+        Menu menu = new Menu("Меню:", "Выберите пункт меню:", "Неверный ввод!", map);
+        menu.add("Расставить сущности", new SpawnAction());
+        menu.add("Запустить симуляцию", new CreatureInteractionAction());
+        menu.add("Добавить травоядное животное", new RespawnHerbivoreAction());
+        menu.add("Добавить траву", new RespawnGrassAction());
+        menu.add("Добавить хищника", new RespawnPredatorAction());
+        menu.add("Очистить карту", new ClearMapAction());
+        menu.add("Выход", new ExitAction());
 
-//        InitAction initAction = new InitAction(map);
-//        MapConsoleRenderer mapConsoleRenderer = new MapConsoleRenderer();
-//        int count = 1;
+//        menu.show();
+//        menu.select();
 //
-//        initAction.initActions();
-//        mapConsoleRenderer.render(map);
-//        System.out.println("Количество ходов с момента старта: " + count);
+//        menu.show();
+//        menu.select();
 //
-//        while (map.getEntities().size() > 2) {
-//            count++;
-//            initAction.turnActions();
-//            System.out.println();
-//            mapConsoleRenderer.render(map);
-//            System.out.println("Количество ходов с момента старта: " + count);
-//        }
-
-
-
-
-
-//        List<Action> actions = List.of(new InitAction(), new MapRendererAction(), new TurnAction(), new MapRendererAction());
-//        for (Action action : actions) {
-//            action.execute(map);
-//            System.out.println();
-//        }
-
-
-
-//        Action init = new SpawnAction();
-//        Action render = new MapRendererAction();
-//        Action turn = new TurnAction();
-//        Action spawn = new RespawnAction();
-//
-//        init.execute(map);
-//        render.execute(map);
-//        count++;
-//
-//        //todo магические числа
 //        while (count < 50) {
-//            System.out.println("Ход: " + count);
-//            turn.execute(map);
-//            if (count % 20 == 0) {
-//                spawn.execute(map);
-////                map.setEntity(new Coordinates(-1, 60), new Herbivore(new Coordinates(-1, 60)));
-////                map.getEntity(new Coordinates(-1, 60));
-////                map.removeEntity(new Coordinates(-1, 60));
-//            }
-//            render.execute(map);
+////            menu.show();
+////            menu.select();
+//            mapConsoleRenderer.render(map);
+//            System.out.println();
 //            count++;
 //        }
+
+        while (true) {
+            menu.show();
+            menu.select();
+        }
+
 //
-//        try {
-//            while (count < 50) {
-//                System.out.println("Ход: " + count);
-//                turn.execute(map);
-//                if (count % 20 == 0) {
-//                    spawn.execute(map);
-//                map.setEntity(new Coordinates(-1, 60), new Herbivore(new Coordinates(-1, 60)));
-////                map.getEntity(new Coordinates(-1, 60));
-////                map.removeEntity(new Coordinates(-1, 60));
-//                }
-//                render.execute(map);
-//                count++;
-//            }
-//        } catch (OutOfMapBoundsException exception) {
-//            System.out.println(exception.getMessage());
-//        }
     }
 }

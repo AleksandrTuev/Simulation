@@ -2,8 +2,11 @@ package com.example.simulation.actions.spawn_action;
 
 import com.example.simulation.Coordinates;
 import com.example.simulation.Map;
+import com.example.simulation.MapConsoleRenderer;
 import com.example.simulation.actions.Action;
 import com.example.simulation.entities.*;
+
+import java.util.List;
 
 public class SpawnAction implements Action {
     private static final int AMOUNT_GRASS = 20;
@@ -12,13 +15,12 @@ public class SpawnAction implements Action {
     private static final int AMOUNT_HERBIVORE = 15;
     private static final int AMOUNT_PREDATOR = 5;
     private Map map;
-    //initActions - действия, совершаемые перед стартом симуляции. Пример - расставить объекты и существ на карте
-    //turnActions - действия, совершаемые каждый ход. Примеры - передвижение существ, добавить травы или травоядных, если их осталось слишком мало
 
     @Override
     public void execute(Map map) {
         this.map = map;
         setupEntitiesPositions();
+        MapConsoleRenderer.render(map);
     }
 
     private void setupEntitiesPositions() {
@@ -33,6 +35,11 @@ public class SpawnAction implements Action {
         Coordinates coordinates;
 
         for (int i = 0; i < count; i++) {
+
+            if (!(AvailableCellsChecker.hasAvailableCells(map))) {
+                return;
+            }
+
             if (entity instanceof Rock){
                 coordinates = RandomAvailableCoordinateGenerator.generate(map);
                 Rock rock = new Rock();
@@ -56,4 +63,10 @@ public class SpawnAction implements Action {
             }
         }
     }
+
+//    public static boolean hasAvailableCells(Map map) {
+//        int countCells = map.getRows() * map.getColumns();
+//        int countEntity = map.getEntities().size();
+//        return countCells > countEntity;
+//    }
 }

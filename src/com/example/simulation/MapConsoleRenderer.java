@@ -3,14 +3,14 @@ package com.example.simulation;
 import com.example.simulation.entities.*;
 
 public class MapConsoleRenderer {
-    private final String UNICODE_HERBIVORE = "🐇";
-    private final String UNICODE_ROCK = "🪨";
-    private final String UNICODE_TREE = "🌳";
-    private final String UNICODE_GRASS = "🍀";
-    private final String UNICODE_PREDATOR = "🦁";
-    private final String UNICODE_EMPTY_CELL = "🏿";
+    private static final String UNICODE_HERBIVORE = "🐇";
+    private static final String UNICODE_ROCK = "🪨";
+    private static final String UNICODE_TREE = "🌳";
+    private static final String UNICODE_GRASS = "🍀";
+    private static final String UNICODE_PREDATOR = "🦁";
+    private static final String UNICODE_EMPTY_CELL = "🏿";
 
-    public void render(Map map){
+    public static void render(Map map){
     Coordinates coordinates;
 
         for (int i = 1; i < map.getRows() + 1; i++) {

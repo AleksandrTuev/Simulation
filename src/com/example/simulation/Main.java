@@ -9,11 +9,9 @@ public class Main {
         Simulation simulation = new Simulation(10, 20); //10 20
         simulation.gameLoop();
         int a = 123;
-        Map map = new Map(10, 20);
+//        Map map = new Map(10, 20);
 
-        Menu menu = new Menu(
-                "Стартовый экран:", "Выберите пункт меню:", "Неверный ввод!");
-//        menu.add("Выберите карту", SpawnAction::execute);
+
 
 
 

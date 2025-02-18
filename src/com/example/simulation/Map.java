@@ -29,6 +29,10 @@ public class Map {
         return new HashMap<>(entities);
     }
 
+    public void removeEntities() {
+        entities.clear();
+    }
+
     public void setEntity(Coordinates coordinates, Entity entity) {
         validateCoordinates(coordinates);
         entities.put(coordinates, entity);
