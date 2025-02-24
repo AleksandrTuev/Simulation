@@ -1,6 +1,5 @@
 package com.example.simulation.actions.spawn_action;
 
-import com.example.simulation.Coordinates;
 import com.example.simulation.Map;
 import com.example.simulation.MapConsoleRenderer;
 import com.example.simulation.actions.Action;
@@ -11,21 +10,7 @@ public class RespawnGrassAction implements Action {
 
     @Override
     public void execute(Map map) {
-        createGrass(map);
+        Spawnable.createEntity(Grass.class, COUNT_GRASS, map);
         MapConsoleRenderer.render(map);
-    }
-
-    private void createGrass(Map map) {
-        Coordinates coordinates;
-
-        if (!(AvailableCellsChecker.hasAvailableCells(map))) {
-            return;
-        }
-
-        for (int i = 0; i < COUNT_GRASS; i++) {
-            coordinates = RandomAvailableCoordinateGenerator.generate(map);
-            Grass grass = new Grass();
-            map.setEntity(coordinates, grass);
-        }
     }
 }

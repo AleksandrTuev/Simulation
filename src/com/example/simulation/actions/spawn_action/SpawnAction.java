@@ -1,6 +1,5 @@
 package com.example.simulation.actions.spawn_action;
 
-import com.example.simulation.Coordinates;
 import com.example.simulation.Map;
 import com.example.simulation.MapConsoleRenderer;
 import com.example.simulation.actions.Action;
@@ -22,43 +21,10 @@ public class SpawnAction implements Action {
     }
 
     private void setupEntitiesPositions() {
-        createEntity(new Rock(), AMOUNT_ROCK);
-        createEntity(new Tree(), AMOUNT_TREE);
-        createEntity(new Grass(), AMOUNT_GRASS);
-        createEntity(new Herbivore(), AMOUNT_HERBIVORE);
-        createEntity(new Predator(), AMOUNT_PREDATOR);
-    }
-
-    private void createEntity(Entity entity, int count){
-        Coordinates coordinates;
-
-        for (int i = 0; i < count; i++) {
-
-            if (!(AvailableCellsChecker.hasAvailableCells(map))) {
-                return;
-            }
-
-            if (entity instanceof Rock){
-                coordinates = RandomAvailableCoordinateGenerator.generate(map);
-                Rock rock = new Rock();
-                map.setEntity(coordinates, rock);
-            } else if (entity instanceof Tree) {
-                coordinates = RandomAvailableCoordinateGenerator.generate(map);
-                Tree tree = new Tree();
-                map.setEntity(coordinates, tree);
-            } else if (entity instanceof Grass) {
-                coordinates = RandomAvailableCoordinateGenerator.generate(map);
-                Grass grass = new Grass();
-                map.setEntity(coordinates, grass);
-            } else if (entity instanceof Herbivore) {
-                coordinates = RandomAvailableCoordinateGenerator.generate(map);
-                Herbivore herbivore = new Herbivore(coordinates);
-                map.setEntity(coordinates, herbivore);
-            } else if (entity instanceof Predator) {
-                coordinates = RandomAvailableCoordinateGenerator.generate(map);
-                Predator predator = new Predator(coordinates);
-                map.setEntity(coordinates, predator);
-            }
-        }
+        Spawnable.createEntity(Rock.class, AMOUNT_ROCK, map);
+        Spawnable.createEntity(Tree.class, AMOUNT_TREE, map);
+        Spawnable.createEntity(Grass.class, AMOUNT_GRASS, map);
+        Spawnable.createEntity(Herbivore.class, AMOUNT_HERBIVORE, map);
+        Spawnable.createEntity(Predator.class, AMOUNT_PREDATOR, map);
     }
 }
