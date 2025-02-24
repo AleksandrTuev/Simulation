@@ -5,12 +5,12 @@ import com.example.simulation.exceptions.OutOfMapBoundsException;
 
 import java.util.HashMap;
 
-public class Map {
+public class GameMap {
     private final int rows;
     private final int columns;
     private final HashMap<Coordinates, Entity> entities = new HashMap<>();
 
-    public Map(int rows, int columns) {
+    public GameMap(int rows, int columns) {
         this.rows = rows;
         this.columns = columns;
     }

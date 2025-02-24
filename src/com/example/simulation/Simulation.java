@@ -7,16 +7,16 @@ import com.example.simulation.actions.spawn_action.RespawnPredatorAction;
 import com.example.simulation.actions.spawn_action.SpawnAction;
 
 public class Simulation {
-    private final Map map;
+    private final GameMap gameMap;
     private static final int TIME_POINT = 150;
     private int count = 0;
 
     public Simulation(int rows, int columns) {
-        this.map = new Map(rows,columns);
+        this.gameMap = new GameMap(rows,columns);
     }
 
     public void gameLoop() {
-        Menu menu = new Menu("Меню:", "Выберите пункт меню:", "Неверный ввод!", map);
+        Menu menu = new Menu("Меню:", "Выберите пункт меню:", "Неверный ввод!", gameMap);
         menu.add("Расставить сущности", new SpawnAction());
         menu.add("Запустить симуляцию", new CreatureInteractionAction());
         menu.add("Добавить травоядное животное", new RespawnHerbivoreAction());

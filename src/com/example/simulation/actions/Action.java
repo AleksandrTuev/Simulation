@@ -1,8 +1,8 @@
 package com.example.simulation.actions;
 
-import com.example.simulation.Map;
+import com.example.simulation.GameMap;
 
 public interface Action {
 
-    void execute(Map map);
+    void execute(GameMap gameMap);
 }

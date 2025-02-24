@@ -1,10 +1,10 @@
 package com.example.simulation.actions;
 
-import com.example.simulation.Map;
+import com.example.simulation.GameMap;
 
 public class ExitAction implements Action {
     @Override
-    public void execute(Map map) {
+    public void execute(GameMap gameMap) {
         System.exit(0);
     }
 }

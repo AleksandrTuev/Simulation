@@ -1,7 +1,7 @@
 package com.example.simulation.entities;
 
 import com.example.simulation.Coordinates;
-import com.example.simulation.Map;
+import com.example.simulation.GameMap;
 
 public class Herbivore extends Creature {
     private static final int INIT_HEALTH = 10;
@@ -17,8 +17,8 @@ public class Herbivore extends Creature {
     }
 
     @Override
-    protected void makeAttack(Coordinates target, Map map) {
-        map.removeEntity(target);
-        updatePosition(target, map);
+    protected void makeAttack(Coordinates target, GameMap gameMap) {
+        gameMap.removeEntity(target);
+        updatePosition(target, gameMap);
     }
 }

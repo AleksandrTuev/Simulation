@@ -10,18 +10,18 @@ public class MapConsoleRenderer {
     private static final String UNICODE_PREDATOR = "🦁";
     private static final String UNICODE_EMPTY_CELL = "🏿";
 
-    public static void render(Map map){
+    public static void render(GameMap gameMap){
     Coordinates coordinates;
 
-        for (int i = 1; i < map.getRows() + 1; i++) {
+        for (int i = 1; i < gameMap.getRows() + 1; i++) {
             StringBuilder line = new StringBuilder();
-            for (int j = 1; j < map.getColumns() + 1; j++) {
+            for (int j = 1; j < gameMap.getColumns() + 1; j++) {
                 coordinates = new Coordinates(i, j);
 
-                if (!(map.getEntities().containsKey(coordinates))){
+                if (!(gameMap.getEntities().containsKey(coordinates))){
                     line.append(UNICODE_EMPTY_CELL);
                 } else {
-                    Entity entity = map.getEntity(coordinates);
+                    Entity entity = gameMap.getEntity(coordinates);
 
                     if (entity instanceof Rock){
                         line.append(UNICODE_ROCK);

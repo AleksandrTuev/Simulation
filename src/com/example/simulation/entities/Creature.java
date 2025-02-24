@@ -2,7 +2,7 @@ package com.example.simulation.entities;
 
 import com.example.simulation.Coordinates;
 import com.example.simulation.Manager;
-import com.example.simulation.Map;
+import com.example.simulation.GameMap;
 
 import java.util.*;
 
@@ -41,8 +41,8 @@ public abstract class Creature extends Entity {
         this.health = health;
     }
 
-    public void makeMove(Map map) {
-        LinkedHashSet<Coordinates> path = Manager.getDefaultPathSearchAlgorithm().getPath(coordinates, food, map);
+    public void makeMove(GameMap gameMap) {
+        LinkedHashSet<Coordinates> path = Manager.getDefaultPathSearchAlgorithm().getPath(coordinates, food, gameMap);
         List<Coordinates> pathList = new ArrayList<>(path);
         Collections.reverse(pathList);
 
@@ -53,12 +53,12 @@ public abstract class Creature extends Entity {
 
         if (isFoodReachable(pathList)) {
             Coordinates target = pathList.getLast();
-            makeAttack(target, map);
+            makeAttack(target, gameMap);
             increaseLife();
             return;
         }
 
-        moveAlongPath(pathList, map);
+        moveAlongPath(pathList, gameMap);
     }
 
     private void increaseLife() {
@@ -71,22 +71,22 @@ public abstract class Creature extends Entity {
         return pathList.size() == 2;
     }
 
-    private void moveAlongPath(List<Coordinates> pathList, Map map) {
+    private void moveAlongPath(List<Coordinates> pathList, GameMap gameMap) {
         int steps = Math.min(pathList.size() - 2, speed);
 
         if (steps > 0) {
             Coordinates newCoordinates = pathList.get(steps);
-            updatePosition(newCoordinates, map);
+            updatePosition(newCoordinates, gameMap);
         }
     }
 
-    protected void updatePosition(Coordinates newCoordinates, Map map) {
-        map.removeEntity(this.coordinates);
+    protected void updatePosition(Coordinates newCoordinates, GameMap gameMap) {
+        gameMap.removeEntity(this.coordinates);
         setCoordinates(newCoordinates);
-        map.setEntity(newCoordinates, this);
+        gameMap.setEntity(newCoordinates, this);
     }
 
-    protected abstract void makeAttack(Coordinates target, Map map);
+    protected abstract void makeAttack(Coordinates target, GameMap gameMap);
 
     protected boolean isALive() {
         return health > 0;
@@ -98,12 +98,12 @@ public abstract class Creature extends Entity {
     }
 
     @Override
-    public void act(Map map) {
+    public void act(GameMap gameMap) {
         if (canMove()) {
-            makeMove(map);
+            makeMove(gameMap);
         } else {
-            if (this.equals(map.getEntity(coordinates))) {
-                map.removeEntity(coordinates);
+            if (this.equals(gameMap.getEntity(coordinates))) {
+                gameMap.removeEntity(coordinates);
             }
         }
     }

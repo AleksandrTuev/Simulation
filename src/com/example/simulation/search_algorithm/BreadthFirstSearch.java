@@ -1,7 +1,7 @@
 package com.example.simulation.search_algorithm;
 
 import com.example.simulation.Coordinates;
-import com.example.simulation.Map;
+import com.example.simulation.GameMap;
 import com.example.simulation.entities.CoordinatesShift;
 import com.example.simulation.entities.Entity;
 
@@ -10,7 +10,7 @@ import java.util.*;
 public class BreadthFirstSearch implements PathSearchAlgorithm{
 
     @Override
-    public LinkedHashSet<Coordinates> getPath(Coordinates from, Class<? extends Entity> food, Map map) {
+    public LinkedHashSet<Coordinates> getPath(Coordinates from, Class<? extends Entity> food, GameMap gameMap) {
         Deque<Coordinates> queue = new ArrayDeque<>();
         Set<Coordinates> visitedCells = new HashSet<>();
         HashMap<Coordinates, Coordinates> path = new HashMap<>();
@@ -33,9 +33,9 @@ public class BreadthFirstSearch implements PathSearchAlgorithm{
                     CoordinatesShift coordinatesShift = new CoordinatesShift(i, j);
                     Coordinates newCoordinates = coordinates.add(coordinatesShift);
 
-                    if (map.canShift(coordinates, coordinatesShift)) {
-                        if (map.getEntities().containsKey(newCoordinates)) {
-                            if (food.equals(map.getEntity(newCoordinates).getClass())) {
+                    if (gameMap.canShift(coordinates, coordinatesShift)) {
+                        if (gameMap.getEntities().containsKey(newCoordinates)) {
+                            if (food.equals(gameMap.getEntity(newCoordinates).getClass())) {
                                 path.put(newCoordinates, coordinates);
                                 result.add(newCoordinates);
 

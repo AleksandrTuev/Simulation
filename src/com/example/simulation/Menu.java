@@ -16,13 +16,13 @@ public class Menu {
 
     private int id = START_ID;
     private final List<Item> items = new ArrayList<>();
-    private final Map map;
+    private final GameMap gameMap;
 
-    public Menu(String title, String selectMessage, String failMessage, Map map) {
+    public Menu(String title, String selectMessage, String failMessage, GameMap gameMap) {
         this.title = UNICODE_IMAGE + title + UNICODE_IMAGE;
         this.selectMessage = selectMessage;
         this.failMessage = failMessage;
-        this.map = map;
+        this.gameMap = gameMap;
     }
 
     public void add(String text, Action action) {
@@ -50,7 +50,7 @@ public class Menu {
                 int num = Integer.parseInt(key);
                 if (num >= START_ID && num < id) {
                     Item item = items.get(num - START_ID);
-                    item.action.execute(map);
+                    item.action.execute(gameMap);
                     break;
                 }
             }
