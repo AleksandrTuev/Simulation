@@ -62,7 +62,9 @@ public abstract class Creature extends Entity {
     }
 
     private void increaseLife() {
-        health++;
+        if (health < 10) {
+            health++;
+        }
     }
 
     private boolean isFoodReachable(List<Coordinates> pathList) {
