@@ -1,7 +1,5 @@
 package com.example.simulation;
 
-import com.example.simulation.entities.CoordinatesShift;
-
 public class Coordinates {
     private final int row;
     private final int column;
@@ -19,8 +17,8 @@ public class Coordinates {
         return column;
     }
 
-    public Coordinates add(CoordinatesShift coordinatesShift) {
-        return new Coordinates(row + coordinatesShift.getRowShift(), column + coordinatesShift.getColumnShift());
+    public Coordinates add(Coordinates coordinate) {
+        return new Coordinates(row + coordinate.getRow(), column + coordinate.getColumn());
     }
 
     @Override
