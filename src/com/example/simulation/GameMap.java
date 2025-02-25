@@ -4,11 +4,13 @@ import com.example.simulation.entities.*;
 import com.example.simulation.exceptions.OutOfMapBoundsException;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.NoSuchElementException;
 
 public class GameMap {
     private final int rows;
     private final int columns;
-    private final HashMap<Coordinates, Entity> entities = new HashMap<>();
+    private final Map<Coordinates, Entity> entities = new HashMap<>();
 
     public GameMap(int rows, int columns) {
         this.rows = rows;
@@ -36,7 +38,7 @@ public class GameMap {
         entities.put(coordinates, entity);
     }
 
-    public Entity getEntity(Coordinates coordinates) {
+    public Entity getEntity(Coordinates coordinates){
         validateCoordinates(coordinates);
         return entities.get(coordinates);
     }
@@ -44,13 +46,6 @@ public class GameMap {
     public void removeEntity(Coordinates coordinates) {
         validateCoordinates(coordinates);
         entities.remove(coordinates);
-    }
-
-    public boolean canShift(Coordinates coordinates, CoordinatesShift coordinatesShift) {
-        int row = coordinates.getRow() + coordinatesShift.getRowShift();
-        int column = coordinates.getColumn() + coordinatesShift.getColumnShift();
-
-        return isCoordinatesValid(new Coordinates(row, column));
     }
 
     public boolean isCoordinatesValid(Coordinates coordinates) {

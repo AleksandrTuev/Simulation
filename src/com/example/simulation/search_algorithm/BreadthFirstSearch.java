@@ -13,13 +13,13 @@ public class BreadthFirstSearch implements PathSearchAlgorithm{
     public LinkedHashSet<Coordinates> getPath(Coordinates from, Class<? extends Entity> food, GameMap gameMap) {
         Deque<Coordinates> queue = new ArrayDeque<>();
         Set<Coordinates> visitedCells = new HashSet<>();
-        HashMap<Coordinates, Coordinates> path = new HashMap<>();
+        Map<Coordinates, Coordinates> path = new HashMap<>();
         LinkedHashSet<Coordinates> result = new LinkedHashSet<>();
         Coordinates coordinates;
 
         queue.addLast(from);
 
-        while (!(queue.isEmpty())) {
+        while (!queue.isEmpty()) {
             coordinates = queue.pollFirst();
             visitedCells.add(coordinates);
 
@@ -33,7 +33,7 @@ public class BreadthFirstSearch implements PathSearchAlgorithm{
                     CoordinatesShift coordinatesShift = new CoordinatesShift(i, j);
                     Coordinates newCoordinates = coordinates.add(coordinatesShift);
 
-                    if (gameMap.canShift(coordinates, coordinatesShift)) {
+                    if (canShift(coordinates, coordinatesShift, gameMap)) {
                         if (gameMap.getEntities().containsKey(newCoordinates)) {
                             if (food.equals(gameMap.getEntity(newCoordinates).getClass())) {
                                 path.put(newCoordinates, coordinates);
@@ -49,8 +49,8 @@ public class BreadthFirstSearch implements PathSearchAlgorithm{
                                 }
                             }
                         } else {
-                            if (!(queue.contains(newCoordinates))) {
-                                if (!(visitedCells.contains(newCoordinates))) {
+                            if (!queue.contains(newCoordinates)) {
+                                if (!visitedCells.contains(newCoordinates)) {
                                     queue.addLast(newCoordinates);
                                     path.put(newCoordinates, coordinates);
                                 }
@@ -61,6 +61,13 @@ public class BreadthFirstSearch implements PathSearchAlgorithm{
             }
         }
         return result;
+    }
+
+    private boolean canShift(Coordinates coordinates, CoordinatesShift coordinatesShift, GameMap gameMap) {
+        int row = coordinates.getRow() + coordinatesShift.getRowShift();
+        int column = coordinates.getColumn() + coordinatesShift.getColumnShift();
+
+        return gameMap.isCoordinatesValid(new Coordinates(row, column));
     }
 }
 
