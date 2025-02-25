@@ -1,7 +1,7 @@
 package com.example.simulation.entities;
 
 import com.example.simulation.Coordinates;
-import com.example.simulation.Manager;
+import com.example.simulation.search_algorithm.PathSearchAlgorithmFactory;
 import com.example.simulation.GameMap;
 
 import java.util.*;
@@ -42,7 +42,7 @@ public abstract class Creature extends Entity {
     }
 
     public void makeMove(GameMap gameMap) {
-        LinkedHashSet<Coordinates> path = Manager.getDefaultPathSearchAlgorithm().getPath(coordinates, food, gameMap);
+        LinkedHashSet<Coordinates> path = PathSearchAlgorithmFactory.getDefaultPathSearchAlgorithm().getPath(coordinates, food, gameMap);
         List<Coordinates> pathList = new ArrayList<>(path);
         Collections.reverse(pathList);
 
