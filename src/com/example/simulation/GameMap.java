@@ -40,6 +40,10 @@ public class GameMap {
 
     public Entity getEntity(Coordinates coordinates){
         validateCoordinates(coordinates);
+
+        if (entities.get(coordinates) == null) {
+            throw new NoSuchElementException("Element not found to coordinates");
+        }
         return entities.get(coordinates);
     }
 
