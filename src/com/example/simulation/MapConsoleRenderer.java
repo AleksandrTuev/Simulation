@@ -33,6 +33,8 @@ public class MapConsoleRenderer {
                         line.append(UNICODE_HERBIVORE);
                     } else if (entity instanceof Predator) {
                         line.append(UNICODE_PREDATOR);
+                    } else {
+                        throw new IllegalArgumentException("Such an object does not exist");
                     }
                 }
             }
