@@ -10,16 +10,16 @@ public abstract class Creature extends Entity {
     protected Coordinates coordinates;
     protected int health;
     protected final int speed;
-    protected final Class <? extends Entity> food;
+    protected final Class<? extends Entity> food;
 
-    public Creature(Coordinates coordinates, int health, int speed, Class <? extends Entity> food) {
+    public Creature(Coordinates coordinates, int health, int speed, Class<? extends Entity> food) {
         this.coordinates = coordinates;
         this.health = health;
         this.speed = speed;
         this.food = food;
     }
 
-    public Creature(int health, int speed, Class <? extends Entity> food) {
+    public Creature(int health, int speed, Class<? extends Entity> food) {
         this(null, health, speed, food);
     }
 

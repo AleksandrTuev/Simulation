@@ -38,7 +38,7 @@ public class GameMap {
         entities.put(coordinates, entity);
     }
 
-    public Entity getEntity(Coordinates coordinates){
+    public Entity getEntity(Coordinates coordinates) {
         validateCoordinates(coordinates);
 
         if (entities.get(coordinates) == null) {

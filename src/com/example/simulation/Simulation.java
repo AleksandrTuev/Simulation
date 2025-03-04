@@ -12,7 +12,7 @@ public class Simulation {
     private int count = 0;
 
     public Simulation(int rows, int columns) {
-        this.gameMap = new GameMap(rows,columns);
+        this.gameMap = new GameMap(rows, columns);
     }
 
     public void gameLoop() {

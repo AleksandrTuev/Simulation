@@ -7,6 +7,7 @@ import com.example.simulation.entities.Predator;
 
 public class RespawnPredatorAction implements Action {
     private static final int COUNT_PREDATOR = 1;
+
     @Override
     public void execute(GameMap gameMap) {
         Spawnable.createEntity(Predator::new, COUNT_PREDATOR, gameMap);

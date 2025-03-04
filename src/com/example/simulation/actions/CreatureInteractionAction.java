@@ -5,7 +5,7 @@ import com.example.simulation.MapConsoleRenderer;
 import com.example.simulation.entities.Creature;
 import com.example.simulation.entities.Entity;
 
-public class CreatureInteractionAction implements Action{
+public class CreatureInteractionAction implements Action {
     @Override
     public void execute(GameMap gameMap) {
         if (isEmptyMap(gameMap)) {

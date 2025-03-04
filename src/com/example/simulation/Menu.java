@@ -67,7 +67,7 @@ public class Menu {
         }
     }
 
-    private static class Item{
+    private static class Item {
         public final int id;
         public final String text;
         public final Action action;

@@ -6,7 +6,7 @@ import com.example.simulation.GameMap;
 import java.util.Random;
 
 public class RandomAvailableCoordinateGenerator {
-    public static Coordinates generate(GameMap gameMap){
+    public static Coordinates generate(GameMap gameMap) {
         Random random = new Random();
         Coordinates coordinates;
 

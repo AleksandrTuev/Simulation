@@ -6,9 +6,9 @@ import com.example.simulation.entities.Entity;
 
 import java.util.*;
 
-public class BreadthFirstSearch implements PathSearchAlgorithm{
+public class BreadthFirstSearch implements PathSearchAlgorithm {
     private static final Coordinates[] SHIFT_COORDINATES = {
-            new Coordinates(-1,1),
+            new Coordinates(-1, 1),
             new Coordinates(0, 1),
             new Coordinates(1, 1),
             new Coordinates(1, 0),
