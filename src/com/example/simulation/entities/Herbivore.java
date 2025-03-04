@@ -12,10 +12,6 @@ public class Herbivore extends Creature {
         super(INIT_HEALTH, INIT_SPEED, INIT_FOOD);
     }
 
-    public Herbivore(Coordinates coordinates) {
-        super(coordinates,INIT_HEALTH, INIT_SPEED, INIT_FOOD);
-    }
-
     @Override
     protected void makeAttack(Coordinates target, GameMap gameMap) {
         gameMap.removeEntity(target);

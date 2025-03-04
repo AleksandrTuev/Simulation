@@ -9,7 +9,7 @@ public class RespawnPredatorAction implements Action {
     private static final int COUNT_PREDATOR = 1;
     @Override
     public void execute(GameMap gameMap) {
-        Spawnable.createEntity(Predator.class, COUNT_PREDATOR, gameMap);
+        Spawnable.createEntity(Predator::new, COUNT_PREDATOR, gameMap);
         MapConsoleRenderer.render(gameMap);
     }
 }

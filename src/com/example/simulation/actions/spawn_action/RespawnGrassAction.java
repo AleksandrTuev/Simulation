@@ -10,7 +10,7 @@ public class RespawnGrassAction implements Action {
 
     @Override
     public void execute(GameMap gameMap) {
-        Spawnable.createEntity(Grass.class, COUNT_GRASS, gameMap);
+        Spawnable.createEntity(Grass::new, COUNT_GRASS, gameMap);
         MapConsoleRenderer.render(gameMap);
     }
 }

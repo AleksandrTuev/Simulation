@@ -10,7 +10,7 @@ public class RespawnHerbivoreAction implements Action {
 
     @Override
     public void execute(GameMap gameMap) {
-        Spawnable.createEntity(Herbivore.class, COUNT_HERBIVORE, gameMap);
+        Spawnable.createEntity(Herbivore::new, COUNT_HERBIVORE, gameMap);
         MapConsoleRenderer.render(gameMap);
     }
 }

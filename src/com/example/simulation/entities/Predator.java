@@ -13,10 +13,6 @@ public class Predator extends Creature {
         super(INIT_HEALTH, INIT_SPEED, INIT_FOOD);
     }
 
-    public Predator(Coordinates coordinates) {
-        super(coordinates,INIT_HEALTH, INIT_SPEED, INIT_FOOD);
-    }
-
     @Override
     protected void makeAttack(Coordinates target, GameMap gameMap) {
         Herbivore herbivore = (Herbivore) gameMap.getEntity(target);

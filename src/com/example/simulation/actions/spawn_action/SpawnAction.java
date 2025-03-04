@@ -21,10 +21,10 @@ public class SpawnAction implements Action {
     }
 
     private void setupEntitiesPositions() {
-        Spawnable.createEntity(Rock.class, AMOUNT_ROCK, gameMap);
-        Spawnable.createEntity(Tree.class, AMOUNT_TREE, gameMap);
-        Spawnable.createEntity(Grass.class, AMOUNT_GRASS, gameMap);
-        Spawnable.createEntity(Herbivore.class, AMOUNT_HERBIVORE, gameMap);
-        Spawnable.createEntity(Predator.class, AMOUNT_PREDATOR, gameMap);
+        Spawnable.createEntity(Rock::new, AMOUNT_ROCK, gameMap);
+        Spawnable.createEntity(Tree::new, AMOUNT_TREE, gameMap);
+        Spawnable.createEntity(Grass::new, AMOUNT_GRASS, gameMap);
+        Spawnable.createEntity(Herbivore::new, AMOUNT_HERBIVORE, gameMap);
+        Spawnable.createEntity(Predator::new, AMOUNT_PREDATOR, gameMap);
     }
 }

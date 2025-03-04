@@ -15,7 +15,9 @@ public class CreatureInteractionAction implements Action{
 
         while (isLivingCreatures(gameMap)) {
             for (Entity entity : gameMap.getEntities().values()) {
-                entity.act(gameMap);
+                if (entity instanceof Creature creature) {
+                    creature.act(gameMap);
+                }
             }
             System.out.println();
             MapConsoleRenderer.render(gameMap);

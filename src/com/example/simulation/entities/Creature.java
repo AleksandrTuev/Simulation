@@ -20,13 +20,7 @@ public abstract class Creature extends Entity {
     }
 
     public Creature(int health, int speed, Class <? extends Entity> food) {
-        this.health = health;
-        this.speed = speed;
-        this.food = food;
-    }
-
-    public Coordinates getCoordinates() {
-        return coordinates;
+        this(null, health, speed, food);
     }
 
     public void setCoordinates(Coordinates coordinates) {
@@ -92,12 +86,10 @@ public abstract class Creature extends Entity {
         return health > 0;
     }
 
-    @Override
     protected boolean canMove() {
         return isALive();
     }
 
-    @Override
     public void act(GameMap gameMap) {
         if (canMove()) {
             makeMove(gameMap);
